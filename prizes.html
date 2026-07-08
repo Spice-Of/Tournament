@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>賞品紹介 — Spice Of Tournament 二〇二六</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#050507;--paper:#0d0c10;--border:#1e1c22;
+  --lamp:#cc2222;--lamp-bright:#ff4444;--lamp-dim:#6b1414;
+  --gold:#8a6a2a;--gold-bright:#c8a040;
+  --text:#e8e2d5;--muted:#5c5850;
+}
+html{scroll-behavior:smooth;}
+@keyframes flicker{0%,93%,100%{opacity:1;}94%{opacity:0.55;filter:brightness(1.5);}95%{opacity:0.9;}96%{opacity:0.4;filter:brightness(0.6);}97%{opacity:1;}}
+@keyframes drift{0%{transform:translateY(-8vh) translateX(0);opacity:0;}10%{opacity:0.3;}90%{opacity:0.15;}100%{transform:translateY(108vh) translateX(-10px);opacity:0;}}
+@keyframes lampGlow{0%,100%{text-shadow:0 0 20px rgba(204,34,34,0.4),0 0 60px rgba(204,34,34,0.2);}50%{text-shadow:0 0 30px rgba(255,68,68,0.6),0 0 90px rgba(204,34,34,0.25);}}
+@keyframes lampSway{0%,100%{transform:rotate(-1.5deg);}50%{transform:rotate(1.5deg);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+body{background:var(--bg);color:var(--text);font-family:'Noto Serif JP',serif;overflow-x:hidden;animation:flicker 14s infinite;}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,transparent 40%,rgba(0,0,0,0.5) 100%);pointer-events:none;z-index:9998;}
+.mote{position:fixed;top:0;background:var(--lamp);border-radius:50%;box-shadow:0 0 6px 1px rgba(204,34,34,0.5);opacity:0;pointer-events:none;z-index:9997;animation:drift linear infinite;}
+
+nav{position:fixed;top:0;left:0;right:0;padding:1rem 2rem;display:flex;align-items:center;gap:2rem;background:rgba(5,5,7,0.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:100;font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;letter-spacing:0.15em;}
+nav a{color:var(--muted);text-decoration:none;transition:color 0.2s;}
+nav a:hover,nav a.active{color:var(--lamp-bright);}
+nav .nav-home{color:var(--text);margin-right:auto;}
+
+.page-hero{min-height:38vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 50%,rgba(204,34,34,0.08) 0%,transparent 70%);}
+.page-hero-kamon{font-size:1.8rem;color:var(--lamp);margin-bottom:1.5rem;opacity:0.85;animation:lampSway 6s ease-in-out infinite;display:block;text-shadow:0 0 20px rgba(204,34,34,0.5);}
+.page-hero-eyebrow{font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;letter-spacing:0.5em;color:var(--muted);margin-bottom:1rem;}
+.page-hero-title{font-size:clamp(2.3rem,7vw,4.5rem);font-weight:900;letter-spacing:0.1em;animation:lampGlow 4.5s ease-in-out infinite;}
+.page-hero-sub{margin-top:1rem;font-size:0.85rem;color:var(--muted);letter-spacing:0.15em;font-family:'Noto Sans JP',sans-serif;}
+.hero-divider{width:1px;height:50px;background:linear-gradient(to bottom,transparent,var(--lamp),transparent);margin:2rem auto 0;}
+
+main{max-width:900px;margin:0 auto;padding:4rem 2rem 6rem;}
+.section-eyebrow{font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.5em;color:var(--lamp);text-transform:uppercase;margin-bottom:0.8rem;}
+.section-title{font-size:clamp(1.3rem,3vw,1.8rem);font-weight:700;color:var(--text);margin-bottom:0.5rem;}
+.section-rule{width:40px;height:1px;background:var(--lamp);margin-bottom:2.5rem;}
+.section-note{font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;color:var(--muted);margin-bottom:2rem;letter-spacing:0.05em;line-height:1.8;}
+.tier{margin-bottom:4.5rem;}
+
+/* ── RANKING PRIZES ── */
+.rank-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem;}
+.rank-card{background:var(--paper);border:1px solid var(--border);padding:2rem;position:relative;text-align:center;animation:fadeUp 0.5s ease both;transition:border-color 0.2s,transform 0.2s;}
+.rank-card:hover{transform:translateY(-3px);}
+.rank-card.gold{border-color:var(--gold-bright);}
+.rank-card.gold:hover{border-color:var(--gold-bright);}
+.rank-card.silver{border-color:#9a9a9a;}
+.rank-card.bronze{border-color:#a06030;}
+.rank-medal{font-size:2rem;margin-bottom:0.8rem;}
+.rank-label{font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;letter-spacing:0.3em;color:var(--muted);margin-bottom:0.6rem;}
+.rank-card.gold .rank-label{color:var(--gold-bright);}
+.rank-card.silver .rank-label{color:#c8c8c8;}
+.rank-card.bronze .rank-label{color:#d08050;}
+.rank-prize{font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:0.6rem;letter-spacing:0.03em;}
+.rank-desc{font-family:'Noto Sans JP',sans-serif;font-size:0.78rem;color:var(--muted);line-height:1.8;}
+
+/* ── SPECIAL / BUMON AWARDS ── */
+.special-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;}
+.special-card{background:var(--paper);border:1px solid var(--border);padding:1.6rem 1.8rem;position:relative;overflow:hidden;animation:fadeUp 0.5s ease both;transition:border-color 0.2s;}
+.special-card:hover{border-color:var(--lamp-dim);}
+.special-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--lamp-dim);}
+.special-award-name{font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;letter-spacing:0.15em;color:var(--lamp-bright);margin-bottom:0.6rem;}
+.special-prize{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;}
+.special-desc{font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;color:var(--muted);line-height:1.8;}
+
+/* ── PARTICIPATION ── */
+.participation-box{display:flex;align-items:center;gap:1.5rem;padding:1.8rem 2.2rem;background:var(--paper);border:1px solid var(--border);flex-wrap:wrap;}
+.participation-icon{font-size:1.8rem;flex-shrink:0;}
+.participation-text{font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--muted);line-height:1.8;}
+.participation-text strong{color:var(--text);}
+
+footer{border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;font-family:'Noto Sans JP',sans-serif;}
+.footer-curse{margin-top:1.2rem;color:#3a1010;font-size:0.6rem;letter-spacing:0.08em;}
+@media(max-width:480px){nav{gap:1rem;font-size:0.65rem;}}
+</style>
+</head>
+<body>
+<script>
+for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m.style.left=Math.random()*100+'vw';const s=(2+Math.random()*3)+'px';m.style.width=s;m.style.height=s;m.style.animationDuration=(10+Math.random()*14)+'s';m.style.animationDelay=(Math.random()*12)+'s';document.body.appendChild(m);}
+</script>
+
+<nav>
+  <a href="index.html" class="nav-home">🔦 Spice Of Tournament</a>
+  <a href="prizes.html" class="active">賞品紹介</a>
+  <a href="sponsors.html">協賛団体</a>
+  <a href="participants.html">参加団体</a>
+  <a href="sale.html">連動セール</a>
+</nav>
+
+<div class="page-hero">
+  <span class="page-hero-kamon">🔦</span>
+  <p class="page-hero-eyebrow">Prizes</p>
+  <h1 class="page-hero-title">賞品紹介</h1>
+  <p class="page-hero-sub">暗闇を抜けた者に贈られる、灯りの証</p>
+  <div class="hero-divider"></div>
+</div>
+
+<main>
+
+  <!-- 順位賞 -->
+  <div class="tier">
+    <p class="section-eyebrow">Ranking Prizes</p>
+    <h2 class="section-title">順位賞</h2>
+    <div class="section-rule"></div>
+    <div class="rank-grid">
+
+      <div class="rank-card gold">
+        <p class="rank-medal">🥇</p>
+        <p class="rank-label">1st Place</p>
+        <p class="rank-prize">賞品名①</p>
+        <p class="rank-desc">賞品の説明をここに入れてください。</p>
+      </div>
+
+      <div class="rank-card silver">
+        <p class="rank-medal">🥈</p>
+        <p class="rank-label">2nd Place</p>
+        <p class="rank-prize">賞品名②</p>
+        <p class="rank-desc">賞品の説明をここに入れてください。</p>
+      </div>
+
+      <div class="rank-card bronze">
+        <p class="rank-medal">🥉</p>
+        <p class="rank-label">3rd Place</p>
+        <p class="rank-prize">賞品名③</p>
+        <p class="rank-desc">賞品の説明をここに入れてください。</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 部門賞 -->
+  <div class="tier">
+    <p class="section-eyebrow">Special Awards</p>
+    <h2 class="section-title">部門賞</h2>
+    <div class="section-rule"></div>
+    <p class="section-note">※ 部門名・賞品・条件は仮の情報です。実際の内容に書き換えてご使用ください。</p>
+    <div class="special-grid">
+
+      <div class="special-card">
+        <p class="special-award-name">💡 ベストプレイ賞</p>
+        <p class="special-prize">賞品名④</p>
+        <p class="special-desc">選出条件をここに記載してください。</p>
+      </div>
+
+      <div class="special-card">
+        <p class="special-award-name">👥 ベストチームワーク賞</p>
+        <p class="special-prize">賞品名⑤</p>
+        <p class="special-desc">選出条件をここに記載してください。</p>
+      </div>
+
+      <div class="special-card">
+        <p class="special-award-name">🔦 敢闘賞</p>
+        <p class="special-prize">賞品名⑥</p>
+        <p class="special-desc">選出条件をここに記載してください。</p>
+      </div>
+
+      <div class="special-card">
+        <p class="special-award-name">🎨 ベストビジュアル賞</p>
+        <p class="special-prize">賞品名⑦</p>
+        <p class="special-desc">選出条件をここに記載してください。</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 参加賞 -->
+  <div class="tier" style="margin-bottom:0;">
+    <p class="section-eyebrow">For Everyone</p>
+    <h2 class="section-title">参加賞</h2>
+    <div class="section-rule"></div>
+    <div class="participation-box">
+      <span class="participation-icon">🔦</span>
+      <p class="participation-text">
+        <strong>大会に参加された全員</strong>に、記念品をお贈りします。<br>
+        暗闇を最後まで歩き切った証を、ぜひ手にとってください。
+      </p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  &copy; 二〇二六　Spice Of Tournament　All Rights Reserved
+  <div class="footer-curse">─ 灯りを失った者の記録は、ここには残らない ─</div>
+</footer>
+</body>
+</html>
