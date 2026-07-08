@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>協賛団体 — Spice Of Tournament 二〇二六</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#050507;--paper:#0d0c10;--border:#1e1c22;
+  --lamp:#cc2222;--lamp-bright:#ff4444;--lamp-dim:#6b1414;
+  --text:#e8e2d5;--muted:#5c5850;
+}
+html{scroll-behavior:smooth;}
+@keyframes flicker{0%,93%,100%{opacity:1;}94%{opacity:0.55;filter:brightness(1.5);}95%{opacity:0.9;}96%{opacity:0.4;filter:brightness(0.6);}97%{opacity:1;}}
+@keyframes drift{0%{transform:translateY(-8vh) translateX(0);opacity:0;}10%{opacity:0.3;}90%{opacity:0.15;}100%{transform:translateY(108vh) translateX(-10px);opacity:0;}}
+@keyframes lampGlow{0%,100%{text-shadow:0 0 20px rgba(204,34,34,0.4),0 0 60px rgba(204,34,34,0.2);}50%{text-shadow:0 0 30px rgba(255,68,68,0.6),0 0 90px rgba(204,34,34,0.25);}}
+@keyframes lampSway{0%,100%{transform:rotate(-1.5deg);}50%{transform:rotate(1.5deg);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+body{background:var(--bg);color:var(--text);font-family:'Noto Serif JP',serif;overflow-x:hidden;animation:flicker 14s infinite;}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,transparent 40%,rgba(0,0,0,0.5) 100%);pointer-events:none;z-index:9998;}
+.mote{position:fixed;top:0;background:var(--lamp);border-radius:50%;box-shadow:0 0 6px 1px rgba(204,34,34,0.5);opacity:0;pointer-events:none;z-index:9997;animation:drift linear infinite;}
+
+nav{position:fixed;top:0;left:0;right:0;padding:1rem 2rem;display:flex;align-items:center;gap:2rem;background:rgba(5,5,7,0.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:100;font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;letter-spacing:0.15em;}
+nav a{color:var(--muted);text-decoration:none;transition:color 0.2s;}
+nav a:hover,nav a.active{color:var(--lamp-bright);}
+nav .nav-home{color:var(--text);margin-right:auto;}
+
+.page-hero{min-height:38vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 50%,rgba(204,34,34,0.08) 0%,transparent 70%);}
+.page-hero-kamon{font-size:1.8rem;color:var(--lamp);margin-bottom:1.5rem;opacity:0.85;animation:lampSway 6s ease-in-out infinite;display:block;text-shadow:0 0 20px rgba(204,34,34,0.5);}
+.page-hero-eyebrow{font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;letter-spacing:0.5em;color:var(--muted);margin-bottom:1rem;}
+.page-hero-title{font-size:clamp(2.3rem,7vw,4.5rem);font-weight:900;letter-spacing:0.1em;animation:lampGlow 4.5s ease-in-out infinite;}
+.page-hero-sub{margin-top:1rem;font-size:0.85rem;color:var(--muted);letter-spacing:0.15em;font-family:'Noto Sans JP',sans-serif;}
+.hero-divider{width:1px;height:50px;background:linear-gradient(to bottom,transparent,var(--lamp),transparent);margin:2rem auto 0;}
+
+main{max-width:900px;margin:0 auto;padding:4rem 2rem 6rem;}
+.section-eyebrow{font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.5em;color:var(--lamp);text-transform:uppercase;margin-bottom:0.8rem;}
+.section-title{font-size:clamp(1.3rem,3vw,1.8rem);font-weight:700;color:var(--text);margin-bottom:0.5rem;}
+.section-rule{width:40px;height:1px;background:var(--lamp);margin-bottom:2.5rem;}
+
+.tier{margin-bottom:4rem;}
+.sponsor-grid-main{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;}
+.sponsor-card-main{background:var(--paper);border:1px solid var(--lamp);padding:2rem;position:relative;animation:fadeUp 0.6s ease both;transition:border-color 0.2s,transform 0.2s;}
+.sponsor-card-main:hover{border-color:var(--lamp-bright);transform:translateY(-3px);}
+.sponsor-logo-placeholder{width:100%;height:80px;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;letter-spacing:0.1em;margin-bottom:1.2rem;}
+.sponsor-name{font-size:1.1rem;font-weight:700;color:var(--lamp-bright);margin-bottom:0.4rem;letter-spacing:0.05em;}
+.sponsor-desc{font-size:0.8rem;color:var(--muted);line-height:1.8;font-family:'Noto Sans JP',sans-serif;}
+.sponsor-url{margin-top:1rem;font-family:'Noto Sans JP',sans-serif;font-size:0.7rem;color:var(--lamp);letter-spacing:0.05em;text-decoration:none;border-bottom:1px solid rgba(204,34,34,0.3);}
+
+.sponsor-grid-sub{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;}
+.sponsor-card-sub{background:var(--paper);border:1px solid var(--border);padding:1.2rem 1.5rem;transition:border-color 0.2s;animation:fadeUp 0.6s ease both;}
+.sponsor-card-sub:hover{border-color:var(--lamp-dim);}
+.sponsor-card-sub .sponsor-name{font-size:0.95rem;color:var(--text);}
+.sponsor-card-sub .sponsor-desc{font-size:0.75rem;}
+
+.message-block{margin-top:5rem;padding:2.5rem;border:1px solid var(--border);border-left:3px solid var(--lamp);background:var(--paper);}
+.message-block p{color:#8a8478;line-height:2.1;font-size:0.9rem;}
+.message-block .message-sign{margin-top:1.5rem;text-align:right;color:var(--muted);font-size:0.8rem;letter-spacing:0.1em;}
+
+footer{border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;font-family:'Noto Sans JP',sans-serif;}
+.footer-curse{margin-top:1.2rem;color:#3a2a10;font-size:0.6rem;letter-spacing:0.08em;}
+@media(max-width:480px){nav{gap:1rem;font-size:0.65rem;}}
+</style>
+</head>
+<body>
+<script>
+for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m.style.left=Math.random()*100+'vw';const s=(2+Math.random()*3)+'px';m.style.width=s;m.style.height=s;m.style.animationDuration=(10+Math.random()*14)+'s';m.style.animationDelay=(Math.random()*12)+'s';document.body.appendChild(m);}
+</script>
+
+<nav>
+  <a href="index.html" class="nav-home">🔦 Spice Of Tournament</a>
+  <a href="prizes.html">賞品紹介</a>
+  <a href="sponsors.html" class="active">協賛団体</a>
+  <a href="participants.html">参加団体</a>
+  <a href="sale.html">連動セール</a>
+</nav>
+
+<div class="page-hero">
+  <span class="page-hero-kamon">🔦</span>
+  <p class="page-hero-eyebrow">Sponsors</p>
+  <h1 class="page-hero-title">協賛団体</h1>
+  <p class="page-hero-sub">この戦いを支える灯りたちの名</p>
+  <div class="hero-divider"></div>
+</div>
+
+<main>
+  <div class="tier">
+    <p class="section-eyebrow">Gold Sponsors</p>
+    <h2 class="section-title">筆頭協賛</h2>
+    <div class="section-rule"></div>
+    <div class="sponsor-grid-main">
+      <div class="sponsor-card-main">
+        <div class="sponsor-logo-placeholder">LOGO</div>
+        <p class="sponsor-name">◯◯株式会社</p>
+        <p class="sponsor-desc">ここに協賛団体の紹介文を入れてください。活動内容や協賛の経緯などを記載できます。</p>
+        <a href="#" class="sponsor-url">www.example.com →</a>
+      </div>
+      <div class="sponsor-card-main">
+        <div class="sponsor-logo-placeholder">LOGO</div>
+        <p class="sponsor-name">△△合同会社</p>
+        <p class="sponsor-desc">ここに協賛団体の紹介文を入れてください。活動内容や協賛の経緯などを記載できます。</p>
+        <a href="#" class="sponsor-url">www.example.com →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="tier">
+    <p class="section-eyebrow">Silver Sponsors</p>
+    <h2 class="section-title">一般協賛</h2>
+    <div class="section-rule"></div>
+    <div class="sponsor-grid-sub">
+      <div class="sponsor-card-sub"><p class="sponsor-name">□□団体</p><p class="sponsor-desc">紹介文をここに。</p></div>
+      <div class="sponsor-card-sub"><p class="sponsor-name">▽▽コミュニティ</p><p class="sponsor-desc">紹介文をここに。</p></div>
+      <div class="sponsor-card-sub"><p class="sponsor-name">◇◇ギルド</p><p class="sponsor-desc">紹介文をここに。</p></div>
+      <div class="sponsor-card-sub"><p class="sponsor-name">☆☆クラン</p><p class="sponsor-desc">紹介文をここに。</p></div>
+    </div>
+  </div>
+
+  <div class="message-block">
+    <p>このたびは、Spice Of Tournamentへのご協賛を賜り、誠にありがとうございます。<br>皆様のご支援があってこそ、この戦いの舞台は成り立ちます。<br>参加者一同、心より感謝申し上げます。</p>
+    <p class="message-sign">— Spice Of Tournament 運営一同</p>
+  </div>
+</main>
+
+<footer>
+  &copy; 二〇二六　Spice Of Tournament　All Rights Reserved
+  <div class="footer-curse">─ 灯りを失った者の記録は、ここには残らない ─</div>
+</footer>
+</body>
+</html>

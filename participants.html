@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>参加団体 — Spice Of Tournament 二〇二六</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#050507;--paper:#0d0c10;--border:#1e1c22;
+  --lamp:#cc2222;--lamp-bright:#ff4444;--lamp-dim:#6b1414;
+  --text:#e8e2d5;--muted:#5c5850;
+}
+html{scroll-behavior:smooth;}
+@keyframes flicker{0%,93%,100%{opacity:1;}94%{opacity:0.55;filter:brightness(1.5);}95%{opacity:0.9;}96%{opacity:0.4;filter:brightness(0.6);}97%{opacity:1;}}
+@keyframes drift{0%{transform:translateY(-8vh) translateX(0);opacity:0;}10%{opacity:0.3;}90%{opacity:0.15;}100%{transform:translateY(108vh) translateX(-10px);opacity:0;}}
+@keyframes lampGlow{0%,100%{text-shadow:0 0 20px rgba(204,34,34,0.4),0 0 60px rgba(204,34,34,0.2);}50%{text-shadow:0 0 30px rgba(255,68,68,0.6),0 0 90px rgba(204,34,34,0.25);}}
+@keyframes lampSway{0%,100%{transform:rotate(-1.5deg);}50%{transform:rotate(1.5deg);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+body{background:var(--bg);color:var(--text);font-family:'Noto Serif JP',serif;overflow-x:hidden;animation:flicker 14s infinite;}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,transparent 40%,rgba(0,0,0,0.5) 100%);pointer-events:none;z-index:9998;}
+.mote{position:fixed;top:0;background:var(--lamp);border-radius:50%;box-shadow:0 0 6px 1px rgba(204,34,34,0.5);opacity:0;pointer-events:none;z-index:9997;animation:drift linear infinite;}
+
+nav{position:fixed;top:0;left:0;right:0;padding:1rem 2rem;display:flex;align-items:center;gap:2rem;background:rgba(5,5,7,0.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:100;font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;letter-spacing:0.15em;}
+nav a{color:var(--muted);text-decoration:none;transition:color 0.2s;}
+nav a:hover,nav a.active{color:var(--lamp-bright);}
+nav .nav-home{color:var(--text);margin-right:auto;}
+
+.page-hero{min-height:38vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 50%,rgba(204,34,34,0.08) 0%,transparent 70%);}
+.page-hero-kamon{font-size:1.8rem;color:var(--lamp);margin-bottom:1.5rem;opacity:0.85;animation:lampSway 6s ease-in-out infinite;display:block;text-shadow:0 0 20px rgba(204,34,34,0.5);}
+.page-hero-eyebrow{font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;letter-spacing:0.5em;color:var(--muted);margin-bottom:1rem;}
+.page-hero-title{font-size:clamp(2.3rem,7vw,4.5rem);font-weight:900;letter-spacing:0.1em;animation:lampGlow 4.5s ease-in-out infinite;}
+.page-hero-sub{margin-top:1rem;font-size:0.85rem;color:var(--muted);letter-spacing:0.15em;font-family:'Noto Sans JP',sans-serif;}
+.hero-divider{width:1px;height:50px;background:linear-gradient(to bottom,transparent,var(--lamp),transparent);margin:2rem auto 0;}
+
+main{max-width:960px;margin:0 auto;padding:4rem 2rem 6rem;}
+.section-eyebrow{font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.5em;color:var(--lamp);text-transform:uppercase;margin-bottom:0.8rem;}
+.section-title{font-size:clamp(1.3rem,3vw,1.8rem);font-weight:700;color:var(--text);margin-bottom:0.5rem;}
+.section-rule{width:40px;height:1px;background:var(--lamp);margin-bottom:2.5rem;}
+.section-note{font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;color:var(--muted);margin-bottom:2rem;letter-spacing:0.05em;line-height:1.8;}
+
+.participant-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-bottom:4rem;}
+.participant-card{background:var(--paper);border:1px solid var(--border);padding:1.8rem;position:relative;animation:fadeUp 0.5s ease both;transition:border-color 0.2s,transform 0.2s;overflow:hidden;}
+.participant-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--lamp);transition:height 0.3s ease;}
+.participant-card:hover{border-color:rgba(204,34,34,0.4);transform:translateY(-3px);}
+.participant-card:hover::before{height:100%;}
+.card-num{font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.2em;color:var(--lamp);margin-bottom:0.8rem;opacity:0.8;}
+.card-name{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:0.3rem;letter-spacing:0.05em;}
+.card-tag{display:inline-block;padding:0.15rem 0.6rem;border:1px solid var(--border);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.8rem;}
+.card-desc{font-size:0.8rem;color:var(--muted);line-height:1.8;font-family:'Noto Sans JP',sans-serif;}
+.card-members{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-family:'Noto Sans JP',sans-serif;font-size:0.7rem;color:var(--muted);letter-spacing:0.05em;}
+.card-members-label{margin-bottom:0.5rem;}
+.card-members ul{list-style:none;display:flex;flex-direction:column;gap:0.35rem;}
+.card-members ul li{display:flex;align-items:center;gap:0.5rem;color:var(--text);}
+.card-members ul li::before{content:'─';color:var(--lamp);font-size:0.6rem;flex-shrink:0;}
+
+.count-banner{display:flex;align-items:center;gap:2rem;padding:2rem 2.5rem;background:var(--paper);border:1px solid var(--border);margin-bottom:3rem;flex-wrap:wrap;}
+.count-item{display:flex;flex-direction:column;gap:0.3rem;}
+.count-num{font-size:2.5rem;font-weight:700;color:var(--lamp-bright);line-height:1;}
+.count-label{font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;}
+.count-divider{width:1px;height:50px;background:var(--border);flex-shrink:0;}
+
+footer{border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;font-family:'Noto Sans JP',sans-serif;}
+.footer-curse{margin-top:1.2rem;color:#3a2a10;font-size:0.6rem;letter-spacing:0.08em;}
+@media(max-width:480px){nav{gap:1rem;font-size:0.65rem;}.count-banner{gap:1rem;}}
+</style>
+</head>
+<body>
+<script>
+for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m.style.left=Math.random()*100+'vw';const s=(2+Math.random()*3)+'px';m.style.width=s;m.style.height=s;m.style.animationDuration=(10+Math.random()*14)+'s';m.style.animationDelay=(Math.random()*12)+'s';document.body.appendChild(m);}
+</script>
+
+<nav>
+  <a href="index.html" class="nav-home">🔦 Spice Of Tournament</a>
+  <a href="prizes.html">賞品紹介</a>
+  <a href="sponsors.html">協賛団体</a>
+  <a href="participants.html" class="active">参加団体</a>
+  <a href="sale.html">連動セール</a>
+</nav>
+
+<div class="page-hero">
+  <span class="page-hero-kamon">⚔</span>
+  <p class="page-hero-eyebrow">Participants</p>
+  <h1 class="page-hero-title">参加団体</h1>
+  <p class="page-hero-sub">この夜道に名乗りを上げた者たちの記録</p>
+  <div class="hero-divider"></div>
+</div>
+
+<main>
+  <div class="count-banner">
+    <div class="count-item"><span class="count-num">4</span><span class="count-label">参加団体数</span></div>
+    <div class="count-divider"></div>
+    <div class="count-item"><span class="count-num">12</span><span class="count-label">総参加人数</span></div>
+    <div class="count-divider"></div>
+    <div class="count-item"><span class="count-num">1</span><span class="count-label">頂点の座</span></div>
+  </div>
+
+  <p class="section-eyebrow">Entry List</p>
+  <h2 class="section-title">参加団体一覧</h2>
+  <div class="section-rule"></div>
+  <p class="section-note">※ 団体名・メンバー数は仮の情報です。実際の情報に書き換えてご使用ください。</p>
+
+  <div class="participant-grid">
+    <div class="participant-card">
+      <p class="card-num">No. 001</p>
+      <h3 class="card-name">◯◯クラン</h3>
+      <span class="card-tag">攻撃型</span>
+      <p class="card-desc">ここに団体の紹介文を入れてください。得意な戦術や過去の実績などを記載できます。</p>
+      <div class="card-members">
+        <p class="card-members-label">メンバー（3名）</p>
+        <ul><li>メンバー名①</li><li>メンバー名②</li><li>メンバー名③</li></ul>
+      </div>
+    </div>
+    <div class="participant-card">
+      <p class="card-num">No. 002</p>
+      <h3 class="card-name">△△ギルド</h3>
+      <span class="card-tag">守備型</span>
+      <p class="card-desc">ここに団体の紹介文を入れてください。得意な戦術や過去の実績などを記載できます。</p>
+      <div class="card-members">
+        <p class="card-members-label">メンバー（3名）</p>
+        <ul><li>メンバー名①</li><li>メンバー名②</li><li>メンバー名③</li></ul>
+      </div>
+    </div>
+    <div class="participant-card">
+      <p class="card-num">No. 003</p>
+      <h3 class="card-name">□□連合</h3>
+      <span class="card-tag">バランス型</span>
+      <p class="card-desc">ここに団体の紹介文を入れてください。得意な戦術や過去の実績などを記載できます。</p>
+      <div class="card-members">
+        <p class="card-members-label">メンバー（3名）</p>
+        <ul><li>メンバー名①</li><li>メンバー名②</li><li>メンバー名③</li></ul>
+      </div>
+    </div>
+    <div class="participant-card">
+      <p class="card-num">No. 004</p>
+      <h3 class="card-name">▽▽衆</h3>
+      <span class="card-tag">奇襲型</span>
+      <p class="card-desc">ここに団体の紹介文を入れてください。得意な戦術や過去の実績などを記載できます。</p>
+      <div class="card-members">
+        <p class="card-members-label">メンバー（3名）</p>
+        <ul><li>メンバー名①</li><li>メンバー名②</li><li>メンバー名③</li></ul>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  &copy; 二〇二六　Spice Of Tournament　All Rights Reserved
+  <div class="footer-curse">─ 灯りを失った者の記録は、ここには残らない ─</div>
+</footer>
+</body>
+</html>

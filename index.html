@@ -1,430 +1,361 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spice Of Tournament 二〇二六</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spice Of Tournament 二〇二六</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#050507;
+  --paper:#0d0c10;
+  --border:#1e1c22;
+  --dark-void:#020103;
+  --lamp:#cc2222;
+  --lamp-bright:#ff4444;
+  --lamp-dim:#6b1414;
+  --danger:#4a1010;
+  --text:#e8e2d5;
+  --muted:#5c5850;
+}
+html{scroll-behavior:smooth;}
 
-    :root {
-      --bg:      #080608;
-      --surface: #0f0b0f;
-      --border:  #2a1a1a;
-      --red:     #9b1a1a;
-      --red-bright: #cc2222;
-      --gold:    #8a6a2a;
-      --text:    #d8cfc0;
-      --muted:   #5a4a40;
-      --paper:   #1a1210;
-    }
+@keyframes flicker{
+  0%,93%,100%{opacity:1;}
+  94%{opacity:0.55;filter:brightness(1.5);}
+  95%{opacity:0.9;}
+  96%{opacity:0.4;filter:brightness(0.6);}
+  97%{opacity:1;}
+}
+@keyframes lampGlow{
+  0%,100%{text-shadow:0 0 20px rgba(204,34,34,0.5),0 0 60px rgba(204,34,34,0.25),0 0 100px rgba(204,34,34,0.1);}
+  50%{text-shadow:0 0 30px rgba(255,68,68,0.7),0 0 80px rgba(204,34,34,0.35),0 0 140px rgba(204,34,34,0.15);}
+}
+@keyframes lampSway{
+  0%,100%{transform:rotate(-1.5deg);}
+  50%{transform:rotate(1.5deg);}
+}
+@keyframes drift{
+  0%{transform:translateY(-8vh) translateX(0);opacity:0;}
+  10%{opacity:0.35;}
+  50%{transform:translateY(50vh) translateX(15px);}
+  90%{opacity:0.15;}
+  100%{transform:translateY(108vh) translateX(-10px);opacity:0;}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulseDim{0%,100%{opacity:0.5;}50%{opacity:1;}}
 
-    html { scroll-behavior: smooth; }
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Noto Serif JP',serif;
+  overflow-x:hidden;
+  animation:flicker 14s infinite;
+}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(204,34,34,0.008) 3px,rgba(204,34,34,0.008) 4px);
+  pointer-events:none;z-index:9999;
+}
+/* vignette : darkness closing in */
+body::after{
+  content:'';
+  position:fixed;inset:0;
+  background:radial-gradient(ellipse 60% 60% at 50% 50%,transparent 40%,rgba(0,0,0,0.55) 100%);
+  pointer-events:none;z-index:9998;
+}
 
-    /* ── FLICKER ── */
-    @keyframes flicker {
-      0%,94%,100% { opacity: 1; }
-      95%  { opacity: 0.7; filter: brightness(1.3) sepia(0.2); }
-      97%  { opacity: 0.9; }
-      98%  { opacity: 0.4; filter: brightness(0.7); }
-    }
+.mote{
+  position:fixed;top:0;
+  background:var(--lamp);
+  border-radius:50%;
+  box-shadow:0 0 6px 1px rgba(204,34,34,0.6);
+  opacity:0;pointer-events:none;z-index:9997;
+  animation:drift linear infinite;
+}
 
-    /* ── 落ち葉パーティクル ── */
-    @keyframes fall {
-      0%   { transform: translateY(-5vh) rotate(0deg) translateX(0); opacity: 0; }
-      10%  { opacity: 0.6; }
-      90%  { opacity: 0.3; }
-      100% { transform: translateY(105vh) rotate(360deg) translateX(40px); opacity: 0; }
-    }
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;
+  padding:1rem 2rem;
+  display:flex;align-items:center;gap:2rem;
+  background:rgba(5,5,7,0.88);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);
+  z-index:100;
+  font-family:'Noto Sans JP',sans-serif;
+  font-size:0.75rem;letter-spacing:0.15em;
+}
+nav a{color:var(--muted);text-decoration:none;transition:color 0.2s;}
+nav a:hover,nav a.active{color:var(--lamp-bright);}
+nav .nav-home{color:var(--text);margin-right:auto;}
 
-    @keyframes brushIn {
-      from { clip-path: inset(0 100% 0 0); }
-      to   { clip-path: inset(0 0% 0 0); }
-    }
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:2rem;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 50% 45% at 50% 38%,rgba(204,34,34,0.1) 0%,transparent 65%),
+    radial-gradient(ellipse 70% 50% at 50% 100%,rgba(0,0,0,0.6) 0%,transparent 70%);
+}
+/* streetlamp silhouette */
+.lamp-post{
+  position:absolute;
+  bottom:0;
+  width:3px;
+  height:38vh;
+  background:linear-gradient(to top,#000,#1a1a1a);
+  opacity:0.5;
+}
+.lamp-post.left{left:8%;}
+.lamp-post.right{right:8%;}
+.lamp-post::before{
+  content:'';
+  position:absolute;
+  top:-14px;left:50%;
+  transform:translateX(-50%);
+  width:26px;height:18px;
+  background:#141414;
+  clip-path:polygon(50% 0%,100% 100%,0% 100%);
+}
+.lamp-post::after{
+  content:'';
+  position:absolute;
+  top:-22px;left:50%;
+  transform:translateX(-50%);
+  width:60px;height:60px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(204,34,34,0.35) 0%,transparent 70%);
+  animation:pulseDim 5s ease-in-out infinite;
+}
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+.hero-kamon{
+  font-size:1.8rem;color:var(--lamp);
+  margin-bottom:1.5rem;opacity:0.85;
+  animation:lampSway 6s ease-in-out infinite;
+  display:block;
+  text-shadow:0 0 20px rgba(204,34,34,0.6);
+}
+.hero-eyebrow{
+  font-family:'Noto Sans JP',sans-serif;
+  font-size:0.7rem;letter-spacing:0.4em;
+  color:var(--muted);margin-bottom:2rem;
+}
+.hero-title{
+  font-size:clamp(2.6rem,10vw,6.5rem);
+  font-weight:900;line-height:1.15;
+  letter-spacing:0.04em;
+  color:var(--text);
+  animation:lampGlow 4.5s ease-in-out infinite;
+}
+.hero-title .accent{color:var(--lamp-bright);display:block;}
+.hero-divider{
+  width:1px;height:60px;
+  background:linear-gradient(to bottom,transparent,var(--lamp),transparent);
+  margin:2rem auto;
+}
+.hero-date{
+  font-size:clamp(0.9rem,2.5vw,1.15rem);
+  color:var(--muted);letter-spacing:0.25em;
+}
+.hero-date span{color:var(--lamp-bright);}
+.hero-cta{
+  margin-top:3rem;display:inline-block;
+  padding:1rem 3rem;
+  border:1px solid var(--lamp);
+  color:var(--text);
+  font-size:0.9rem;letter-spacing:0.2em;
+  text-decoration:none;position:relative;
+  transition:color 0.3s;overflow:hidden;
+}
+.hero-cta::before{
+  content:'';position:absolute;inset:0;
+  background:var(--lamp);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.35s ease;z-index:-1;
+}
+.hero-cta:hover{color:#100a00;}
+.hero-cta:hover::before{transform:scaleX(1);}
 
-    @keyframes pulse-red {
-      0%,100% { text-shadow: 0 0 20px rgba(155,26,26,0.4), 0 0 60px rgba(155,26,26,0.2); }
-      50%     { text-shadow: 0 0 40px rgba(200,40,40,0.7), 0 0 100px rgba(155,26,26,0.3); }
-    }
+/* ── COUNTDOWN ── */
+.countdown-wrap{
+  padding:4rem 2rem;text-align:center;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  background:var(--paper);
+}
+.countdown-label{
+  font-family:'Noto Sans JP',sans-serif;
+  font-size:0.65rem;letter-spacing:0.4em;
+  color:var(--muted);margin-bottom:2rem;
+}
+.countdown{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
+.countdown-unit{display:flex;flex-direction:column;align-items:center;gap:0.5rem;}
+.countdown-num{
+  font-size:clamp(2.5rem,8vw,4.5rem);font-weight:700;
+  color:var(--lamp-bright);line-height:1;min-width:2ch;text-align:center;
+}
+.countdown-unit-label{
+  font-family:'Noto Sans JP',sans-serif;
+  font-size:0.6rem;letter-spacing:0.2em;color:var(--muted);
+}
+.countdown-sep{font-size:clamp(2rem,6vw,3.5rem);color:var(--border);align-self:center;padding-bottom:1.2rem;}
 
-    @keyframes sway {
-      0%,100% { transform: rotate(-1deg); }
-      50%     { transform: rotate(1deg); }
-    }
+/* ── SECTIONS ── */
+section{padding:5rem 2rem;max-width:900px;margin:0 auto;}
+.section-eyebrow{
+  font-family:'Noto Sans JP',sans-serif;
+  font-size:0.6rem;letter-spacing:0.5em;
+  color:var(--lamp);text-transform:uppercase;margin-bottom:0.8rem;
+}
+.section-title{
+  font-size:clamp(1.4rem,4vw,2rem);font-weight:700;
+  color:var(--text);margin-bottom:0.5rem;
+}
+.section-rule{width:40px;height:1px;background:var(--lamp);margin-bottom:2rem;}
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Noto Serif JP', serif;
-      overflow-x: hidden;
-      animation: flicker 12s infinite;
-    }
+.about-body{color:#8a8478;line-height:2.1;font-size:1rem;max-width:600px;}
+.about-warning{
+  margin-top:2rem;padding:1rem 1.5rem;
+  border-left:2px solid var(--lamp-dim);
+  background:rgba(204,34,34,0.04);
+  color:#6a5838;font-size:0.85rem;letter-spacing:0.05em;line-height:1.8;
+}
 
-    /* ── 和紙テクスチャオーバーレイ ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        repeating-linear-gradient(
-          0deg, transparent, transparent 3px,
-          rgba(100,60,40,0.015) 3px, rgba(100,60,40,0.015) 4px
-        ),
-        repeating-linear-gradient(
-          90deg, transparent, transparent 3px,
-          rgba(100,60,40,0.01) 3px, rgba(100,60,40,0.01) 4px
-        );
-      pointer-events: none;
-      z-index: 9999;
-    }
+/* game card */
+.game-card{
+  background:var(--paper);
+  border:1px solid var(--border);
+  padding:2rem 2.5rem;
+  position:relative;overflow:hidden;margin-top:2.5rem;
+}
+.game-card::before{
+  content:'';position:absolute;top:0;left:0;width:4px;height:100%;
+  background:var(--lamp);
+}
+.game-eyebrow{font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;letter-spacing:0.3em;color:var(--lamp);margin-bottom:0.8rem;}
+.game-title{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700;color:var(--text);margin-bottom:1rem;letter-spacing:0.05em;}
+.game-desc{font-family:'Noto Sans JP',sans-serif;font-size:0.85rem;color:var(--muted);line-height:1.9;max-width:600px;}
+.game-tags{margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;}
+.game-tag{font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;letter-spacing:0.1em;color:var(--muted);border:1px solid var(--border);padding:0.3rem 0.8rem;}
 
-    /* ── 落ち葉 ── */
-    .leaf {
-      position: fixed;
-      top: 0;
-      width: 6px;
-      height: 6px;
-      background: var(--red);
-      border-radius: 50% 0;
-      opacity: 0;
-      pointer-events: none;
-      z-index: 9998;
-      animation: fall linear infinite;
-    }
+/* schedule */
+.schedule-list{list-style:none;}
+.schedule-item{
+  display:grid;grid-template-columns:5rem 1fr;gap:1.5rem;
+  padding:1.5rem 0;border-bottom:1px solid var(--border);align-items:start;
+}
+.schedule-time{font-size:0.9rem;color:var(--lamp-bright);padding-top:0.1rem;letter-spacing:0.05em;}
+.schedule-name{font-weight:700;margin-bottom:0.3rem;letter-spacing:0.05em;}
+.schedule-desc{font-size:0.8rem;color:var(--muted);font-family:'Noto Sans JP',sans-serif;}
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-    }
+/* prizes preview grid */
+.prize-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:2rem;}
+.prize-card{background:var(--paper);border:1px solid var(--border);padding:1.8rem;text-align:center;transition:border-color 0.2s;}
+.prize-card.top{border-color:var(--lamp);}
+.prize-card:hover{border-color:var(--lamp-dim);}
+.prize-rank{font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.3em;color:var(--muted);margin-bottom:0.8rem;}
+.prize-card.top .prize-rank{color:var(--lamp);}
+.prize-name{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;}
+.prize-desc{font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;color:var(--muted);line-height:1.7;}
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 70% 60% at 50% 40%, rgba(120,20,20,0.15) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 50% at 20% 80%, rgba(60,10,10,0.2) 0%, transparent 60%);
-    }
+.link-btn{
+  display:inline-block;padding:0.9rem 2.5rem;
+  border:1px solid var(--lamp);color:var(--text);
+  font-size:0.85rem;letter-spacing:0.2em;text-decoration:none;
+  transition:background 0.2s,color 0.2s;
+  font-family:'Noto Serif JP',serif;
+}
+.link-btn:hover{background:var(--lamp);color:#100a00;}
+.link-btn.dim{border-color:var(--border);}
+.link-btn.dim:hover{background:var(--lamp-dim);color:var(--text);}
 
-    /* 鳥居シルエット */
-    .torii {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(400px, 80vw);
-      height: 50vh;
-      opacity: 0.06;
-      pointer-events: none;
-    }
+.preview-text{
+  font-family:'Noto Sans JP',sans-serif;font-size:0.85rem;color:var(--muted);
+  line-height:1.9;max-width:600px;margin-bottom:2rem;
+}
 
-    .hero-kamon {
-      font-size: 2rem;
-      color: var(--red);
-      margin-bottom: 1.5rem;
-      opacity: 0.7;
-      animation: sway 6s ease-in-out infinite;
-      display: block;
-    }
+/* ── REGISTER ── */
+.register-wrap{text-align:center;padding:5rem 2rem;border-top:1px solid var(--border);background:var(--paper);}
+.register-body{color:var(--muted);margin-bottom:2.5rem;font-size:0.9rem;letter-spacing:0.05em;line-height:1.9;}
+.register-btn{
+  display:inline-block;padding:1.1rem 3.5rem;
+  background:var(--lamp-dim);color:#fff;
+  font-size:0.95rem;letter-spacing:0.2em;text-decoration:none;
+  transition:background 0.2s,transform 0.2s;
+}
+.register-btn:hover{background:var(--lamp);color:#100a00;transform:translateY(-2px);}
 
-    .hero-eyebrow {
-      font-family: 'Noto Sans JP', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.4em;
-      color: var(--muted);
-      margin-bottom: 2rem;
-      position: relative;
-    }
+/* organizer */
+.organizer-box{display:flex;gap:2rem;align-items:flex-start;flex-wrap:wrap;}
+.organizer-logo{
+  width:100px;height:100px;
+  background:rgba(204,34,34,0.06);
+  border:1px dashed rgba(204,34,34,0.25);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-family:'Noto Sans JP',sans-serif;
+  font-size:0.6rem;letter-spacing:0.1em;flex-shrink:0;
+}
+.organizer-name{font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:0.6rem;letter-spacing:0.05em;}
+.organizer-desc{font-family:'Noto Sans JP',sans-serif;font-size:0.85rem;color:var(--muted);line-height:1.9;margin-bottom:1rem;}
+.organizer-link{font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;color:var(--lamp);letter-spacing:0.05em;text-decoration:none;border-bottom:1px solid rgba(204,34,34,0.3);}
 
-    .hero-title {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(3rem, 12vw, 8rem);
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: 0.05em;
-      position: relative;
-      color: var(--text);
-      animation: pulse-red 4s ease-in-out infinite;
-      writing-mode: horizontal-tb;
-    }
+footer{
+  border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;
+  font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;
+  font-family:'Noto Sans JP',sans-serif;
+}
+.footer-curse{margin-top:1.2rem;color:#3a2a10;font-size:0.6rem;letter-spacing:0.08em;}
 
-    .hero-title .accent {
-      color: var(--red-bright);
-      display: block;
-    }
-
-    .hero-divider {
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, transparent, var(--red), transparent);
-      margin: 2rem auto;
-    }
-
-    .hero-date {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
-      color: var(--muted);
-      letter-spacing: 0.3em;
-    }
-    .hero-date span { color: var(--gold); }
-
-    .hero-cta {
-      margin-top: 3rem;
-      display: inline-block;
-      padding: 1rem 3rem;
-      border: 1px solid var(--red);
-      color: var(--text);
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.2em;
-      text-decoration: none;
-      position: relative;
-      transition: color 0.3s, border-color 0.3s;
-      overflow: hidden;
-    }
-    .hero-cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--red);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.35s ease;
-      z-index: -1;
-    }
-    .hero-cta:hover { color: #fff; border-color: var(--red-bright); }
-    .hero-cta:hover::before { transform: scaleX(1); }
-
-    /* ── COUNTDOWN ── */
-    .countdown-wrap {
-      padding: 4rem 2rem;
-      text-align: center;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--paper);
-      position: relative;
-    }
-    .countdown-wrap::before,
-    .countdown-wrap::after {
-      content: '✦';
-      position: absolute;
-      color: var(--red);
-      opacity: 0.3;
-      font-size: 0.8rem;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    .countdown-wrap::before { left: 2rem; }
-    .countdown-wrap::after  { right: 2rem; }
-
-    .countdown-label {
-      font-family: 'Noto Sans JP', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.4em;
-      color: var(--muted);
-      margin-bottom: 2rem;
-    }
-    .countdown {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .countdown-unit {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .countdown-num {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
-      font-weight: 700;
-      color: var(--red-bright);
-      line-height: 1;
-      min-width: 2ch;
-      text-align: center;
-    }
-    .countdown-unit-label {
-      font-family: 'Noto Sans JP', sans-serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: var(--muted);
-    }
-    .countdown-sep {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(2rem, 6vw, 3.5rem);
-      color: var(--border);
-      align-self: center;
-      padding-bottom: 1.2rem;
-    }
-
-    /* ── SECTION BASE ── */
-    section { padding: 5rem 2rem; max-width: 860px; margin: 0 auto; }
-
-    .section-eyebrow {
-      font-family: 'Noto Sans JP', sans-serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.5em;
-      color: var(--red);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .section-title {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(1.5rem, 4vw, 2.2rem);
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--text);
-    }
-
-    .section-rule {
-      width: 40px;
-      height: 1px;
-      background: var(--red);
-      margin-bottom: 2rem;
-    }
-
-    /* ── ABOUT ── */
-    .about-body {
-      color: #8a7a6a;
-      line-height: 2.1;
-      font-size: 1rem;
-      max-width: 600px;
-    }
-    .about-warning {
-      margin-top: 2rem;
-      padding: 1rem 1.5rem;
-      border-left: 2px solid var(--red);
-      background: rgba(155,26,26,0.05);
-      color: #6a3030;
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-      line-height: 1.8;
-    }
-
-    /* ── SCHEDULE ── */
-    .schedule-list { list-style: none; }
-    .schedule-item {
-      display: grid;
-      grid-template-columns: 5rem 1fr;
-      gap: 1.5rem;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--border);
-      align-items: start;
-    }
-    .schedule-time {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.9rem;
-      color: var(--gold);
-      padding-top: 0.1rem;
-      letter-spacing: 0.05em;
-    }
-    .schedule-name { font-weight: 700; margin-bottom: 0.3rem; letter-spacing: 0.05em; }
-    .schedule-desc { font-size: 0.8rem; color: var(--muted); font-family: 'Noto Sans JP', sans-serif; }
-
-    /* ── REGISTER ── */
-    .register-wrap {
-      text-align: center;
-      padding: 5rem 2rem;
-      border-top: 1px solid var(--border);
-      background: var(--paper);
-    }
-    .register-body {
-      color: var(--muted);
-      margin-bottom: 2.5rem;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      line-height: 1.9;
-    }
-    .register-btn {
-      display: inline-block;
-      padding: 1.1rem 3.5rem;
-      background: var(--red);
-      color: #fff;
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.95rem;
-      letter-spacing: 0.2em;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .register-btn:hover { background: var(--red-bright); transform: translateY(-2px); }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 3rem 2rem;
-      text-align: center;
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      font-family: 'Noto Sans JP', sans-serif;
-    }
-    .footer-curse {
-      margin-top: 1.5rem;
-      color: #2a1010;
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      line-height: 1.8;
-    }
-
-    @media (max-width: 480px) {
-      .schedule-item { grid-template-columns: 1fr; gap: 0.3rem; }
-      .countdown-wrap::before, .countdown-wrap::after { display: none; }
-    }
-  </style>
+@media (max-width:480px){
+  .schedule-item{grid-template-columns:1fr;gap:0.3rem;}
+  nav{gap:1rem;font-size:0.65rem;}
+  .lamp-post{display:none;}
+}
+</style>
 </head>
 <body>
 
-<!-- 落ち葉パーティクル -->
 <script>
-  for (let i = 0; i < 12; i++) {
-    const leaf = document.createElement('div');
-    leaf.className = 'leaf';
-    leaf.style.left = Math.random() * 100 + 'vw';
-    leaf.style.animationDuration = (8 + Math.random() * 12) + 's';
-    leaf.style.animationDelay = (Math.random() * 10) + 's';
-    leaf.style.width = (4 + Math.random() * 6) + 'px';
-    leaf.style.height = leaf.style.width;
-    leaf.style.opacity = 0;
-    document.body.appendChild(leaf);
-  }
+for(let i=0;i<14;i++){
+  const m=document.createElement('div');
+  m.className='mote';
+  m.style.left=Math.random()*100+'vw';
+  const s=(2+Math.random()*3)+'px';
+  m.style.width=s;m.style.height=s;
+  m.style.animationDuration=(9+Math.random()*14)+'s';
+  m.style.animationDelay=(Math.random()*12)+'s';
+  document.body.appendChild(m);
+}
 </script>
 
-<!-- 鳥居SVG -->
-<svg class="torii" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="20" y="80" width="260" height="18" fill="#9b1a1a"/>
-  <rect x="10" y="110" width="280" height="12" fill="#9b1a1a"/>
-  <rect x="60" y="122" width="20" height="278" fill="#9b1a1a"/>
-  <rect x="220" y="122" width="20" height="278" fill="#9b1a1a"/>
-  <line x1="70" y1="145" x2="70" y2="180" stroke="#9b1a1a" stroke-width="4"/>
-  <line x1="230" y1="145" x2="230" y2="180" stroke="#9b1a1a" stroke-width="4"/>
-</svg>
+<nav>
+  <a href="index.html" class="nav-home active">🔦 Spice Of Tournament</a>
+  <a href="prizes.html">賞品紹介</a>
+  <a href="sponsors.html">協賛団体</a>
+  <a href="participants.html">参加団体</a>
+  <a href="sale.html">連動セール</a>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
-  <span class="hero-kamon">⛩</span>
-  <p class="hero-eyebrow">二〇二六年　武の祭典</p>
-  <h1 class="hero-title">
-    <span class="accent">Spice Of</span>Tournament
-  </h1>
+  <div class="lamp-post left"></div>
+  <div class="lamp-post right"></div>
+  <span class="hero-kamon">🔦</span>
+  <p class="hero-eyebrow">2026 GAMING TOURNAMENT</p>
+  <h1 class="hero-title">Spice Of<span class="accent">Tournament</span></h1>
   <div class="hero-divider"></div>
-  <p class="hero-date">開催日時　<span>令和八年　七月三十一日 〜 八月二日</span></p>
+  <p class="hero-date">開催日時　<span>2026.7.31 〜 8.2</span></p>
   <a href="#register" class="hero-cta">今すぐ参加登録</a>
 </section>
 
@@ -432,128 +363,127 @@
 <div class="countdown-wrap">
   <p class="countdown-label">開幕まで</p>
   <div class="countdown">
-    <div class="countdown-unit">
-      <span class="countdown-num" id="cd-days">--</span>
-      <span class="countdown-unit-label">日</span>
-    </div>
+    <div class="countdown-unit"><span class="countdown-num" id="cd-days">--</span><span class="countdown-unit-label">日</span></div>
     <span class="countdown-sep">:</span>
-    <div class="countdown-unit">
-      <span class="countdown-num" id="cd-hours">--</span>
-      <span class="countdown-unit-label">時</span>
-    </div>
+    <div class="countdown-unit"><span class="countdown-num" id="cd-hours">--</span><span class="countdown-unit-label">時</span></div>
     <span class="countdown-sep">:</span>
-    <div class="countdown-unit">
-      <span class="countdown-num" id="cd-mins">--</span>
-      <span class="countdown-unit-label">分</span>
-    </div>
+    <div class="countdown-unit"><span class="countdown-num" id="cd-mins">--</span><span class="countdown-unit-label">分</span></div>
     <span class="countdown-sep">:</span>
-    <div class="countdown-unit">
-      <span class="countdown-num" id="cd-secs">--</span>
-      <span class="countdown-unit-label">秒</span>
-    </div>
+    <div class="countdown-unit"><span class="countdown-num" id="cd-secs">--</span><span class="countdown-unit-label">秒</span></div>
   </div>
 </div>
 
 <!-- ABOUT -->
 <section id="about">
   <p class="section-eyebrow">About</p>
-  <h2 class="section-title">最強の剣客を決める戦い</h2>
+  <h2 class="section-title">灯りを持つ者だけが、生き残る</h2>
   <div class="section-rule"></div>
   <p class="about-body">
     Spice Of Tournamentは、腕に自信のある猛者が集う真剣勝負のゲーム大会。<br>
     初心者から上級者まで、誰もが熱くなれるトーナメント形式で開催。<br>
-    七月三十一日より三日間、最高の舞台でその実力を証明せよ。
+    七月三十一日より三日間、暗闇の中で最後まで灯りを絶やすな。
   </p>
   <div class="about-warning">
-    ─ ただし、敗れし者の末路は保証せぬ。<br>
-    ─ この地に足を踏み入れた者は、すでに定められた運命の中にある。
+    ─ 手札から明かりが消えた時、あなたは迷子になる。<br>
+    ─ この夜道に足を踏み入れた者は、もう後戻りできない。
   </div>
 
-  <div style="background:var(--paper); border:1px solid var(--border); padding:2rem 2.5rem; position:relative; overflow:hidden; margin-top:2.5rem;">
-    <div style="position:absolute; top:0; left:0; width:4px; height:100%; background:var(--red);"></div>
-    <p style="font-family:'Noto Sans JP',sans-serif; font-size:0.65rem; letter-spacing:0.3em; color:var(--red); margin-bottom:0.8rem;">GAME TITLE</p>
-    <h3 style="font-family:'Noto Serif JP',serif; font-size:clamp(1.5rem,4vw,2.2rem); font-weight:700; color:var(--text); margin-bottom:1rem; letter-spacing:0.05em;">迷子VR</h3>
-    <p style="font-family:'Noto Sans JP',sans-serif; font-size:0.85rem; color:var(--muted); line-height:1.9; max-width:600px;">
+  <div class="game-card">
+    <p class="game-eyebrow">GAME TITLE</p>
+    <h3 class="game-title">迷子VR</h3>
+    <p class="game-desc">
       種目の説明文をここに入れてください。<br>
       ルール・勝利条件・使用プラットフォームなどを記載できます。
     </p>
-    <div style="margin-top:1.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
-      <span style="font-family:'Noto Sans JP',sans-serif; font-size:0.65rem; letter-spacing:0.1em; color:var(--muted); border:1px solid var(--border); padding:0.3rem 0.8rem;">VRChat</span>
-      <span style="font-family:'Noto Sans JP',sans-serif; font-size:0.65rem; letter-spacing:0.1em; color:var(--muted); border:1px solid var(--border); padding:0.3rem 0.8rem;">トーナメント形式</span>
-      <span style="font-family:'Noto Sans JP',sans-serif; font-size:0.65rem; letter-spacing:0.1em; color:var(--muted); border:1px solid var(--border); padding:0.3rem 0.8rem;">3日間</span>
+    <div class="game-tags">
+      <span class="game-tag">VRChat</span>
+      <span class="game-tag">トーナメント形式</span>
+      <span class="game-tag">3日間</span>
     </div>
   </div>
 </section>
 
 <!-- SCHEDULE -->
-<section id="schedule" style="border-top: 1px solid var(--border);">
+<section id="schedule" style="border-top:1px solid var(--border);">
   <p class="section-eyebrow">Schedule</p>
   <h2 class="section-title">当日の刻限</h2>
   <div class="section-rule"></div>
   <ul class="schedule-list">
     <li class="schedule-item">
       <span class="schedule-time">Day 1<br><small style="font-size:0.7rem;color:var(--muted);">7/31 金</small></span>
-      <div>
-        <p class="schedule-name">予選一日目</p>
-        <p class="schedule-desc">22:00 〜 24:00（2時間）</p>
-      </div>
+      <div><p class="schedule-name">予選一日目</p><p class="schedule-desc">22:00 〜 24:00（2時間）</p></div>
     </li>
     <li class="schedule-item">
       <span class="schedule-time">Day 2<br><small style="font-size:0.7rem;color:var(--muted);">8/1 土</small></span>
-      <div>
-        <p class="schedule-name">予選二日目</p>
-        <p class="schedule-desc">22:00 〜 24:00（2時間）</p>
-      </div>
+      <div><p class="schedule-name">予選二日目</p><p class="schedule-desc">22:00 〜 24:00（2時間）</p></div>
     </li>
     <li class="schedule-item">
       <span class="schedule-time">Day 3<br><small style="font-size:0.7rem;color:var(--muted);">8/2 日</small></span>
-      <div>
-        <p class="schedule-name">決勝戦</p>
-        <p class="schedule-desc">21:00 〜 23:00（2時間）</p>
-      </div>
+      <div><p class="schedule-name">決勝戦</p><p class="schedule-desc">21:00 〜 23:00（2時間）</p></div>
     </li>
   </ul>
 </section>
 
 <!-- PRIZES -->
-<section id="prizes" style="border-top: 1px solid var(--border);">
+<section id="prizes" style="border-top:1px solid var(--border);">
   <p class="section-eyebrow">Prizes</p>
   <h2 class="section-title">賞品紹介</h2>
   <div class="section-rule"></div>
-  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:1rem; margin-bottom:2rem;">
-
-    <div style="background:var(--paper); border:1px solid var(--gold); padding:1.8rem; position:relative; text-align:center;">
-      <p style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--gold); margin-bottom:0.8rem;">🏆 PRIZE 01</p>
-      <p style="font-family:'Noto Serif JP',serif; font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:0.5rem;">賞品名①</p>
-      <p style="font-family:'Noto Sans JP',sans-serif; font-size:0.75rem; color:var(--muted); line-height:1.7;">賞品の説明をここに入れてください。</p>
+  <div class="prize-grid">
+    <div class="prize-card top">
+      <p class="prize-rank">🔦 PRIZE 01</p>
+      <p class="prize-name">賞品名①</p>
+      <p class="prize-desc">賞品の説明をここに入れてください。</p>
     </div>
-
-    <div style="background:var(--paper); border:1px solid var(--border); padding:1.8rem; position:relative; text-align:center;">
-      <p style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--muted); margin-bottom:0.8rem;">🥈 PRIZE 02</p>
-      <p style="font-family:'Noto Serif JP',serif; font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:0.5rem;">賞品名②</p>
-      <p style="font-family:'Noto Sans JP',sans-serif; font-size:0.75rem; color:var(--muted); line-height:1.7;">賞品の説明をここに入れてください。</p>
+    <div class="prize-card">
+      <p class="prize-rank">PRIZE 02</p>
+      <p class="prize-name">賞品名②</p>
+      <p class="prize-desc">賞品の説明をここに入れてください。</p>
     </div>
-
-    <div style="background:var(--paper); border:1px solid var(--border); padding:1.8rem; position:relative; text-align:center;">
-      <p style="font-family:'Orbitron',monospace; font-size:0.6rem; letter-spacing:0.3em; color:var(--muted); margin-bottom:0.8rem;">🥉 PRIZE 03</p>
-      <p style="font-family:'Noto Serif JP',serif; font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:0.5rem;">賞品名③</p>
-      <p style="font-family:'Noto Sans JP',sans-serif; font-size:0.75rem; color:var(--muted); line-height:1.7;">賞品の説明をここに入れてください。</p>
+    <div class="prize-card">
+      <p class="prize-rank">PRIZE 03</p>
+      <p class="prize-name">賞品名③</p>
+      <p class="prize-desc">賞品の説明をここに入れてください。</p>
     </div>
-
   </div>
-  <div style="text-align:center; margin-top:1rem;">
-    <a href="prizes.html" style="display:inline-block; padding:0.9rem 2.5rem; border:1px solid var(--red); color:var(--text); font-family:'Noto Serif JP',serif; font-size:0.85rem; letter-spacing:0.2em; text-decoration:none; transition:background 0.2s, color 0.2s;" onmouseover="this.style.background='var(--red)'" onmouseout="this.style.background='transparent'">
-      すべての賞品を見る →
-    </a>
+  <div style="text-align:center;margin-top:1rem;">
+    <a href="prizes.html" class="link-btn">すべての賞品を見る →</a>
   </div>
 </section>
 
+<!-- SPONSORS PREVIEW -->
+<section id="sponsors-preview" style="border-top:1px solid var(--border);">
+  <p class="section-eyebrow">Sponsors</p>
+  <h2 class="section-title">協賛団体</h2>
+  <div class="section-rule"></div>
+  <p class="preview-text">この戦いを支える者たちの名。ご協賛いただいた団体様の一覧はこちらからご覧いただけます。</p>
+  <a href="sponsors.html" class="link-btn dim">協賛団体一覧を見る →</a>
+</section>
+
+<!-- PARTICIPANTS PREVIEW -->
+<section id="participants-preview" style="border-top:1px solid var(--border);">
+  <p class="section-eyebrow">Participants</p>
+  <h2 class="section-title">参加団体</h2>
+  <div class="section-rule"></div>
+  <p class="preview-text">この戦いに名乗りを上げた者たちの記録。エントリーした団体様の一覧はこちらからご覧いただけます。</p>
+  <a href="participants.html" class="link-btn dim">参加団体一覧を見る →</a>
+</section>
+
+<!-- SALE PREVIEW -->
+<section id="sale-preview" style="border-top:1px solid var(--border);">
+  <p class="section-eyebrow">Collaboration Sale</p>
+  <h2 class="section-title">連動セール</h2>
+  <div class="section-rule"></div>
+  <p class="preview-text">大会開催を記念して、対象商品を特別価格にてお届けします。開催期間中限定の企画です。</p>
+  <a href="sale.html" class="link-btn">連動セールを見る →</a>
+</section>
+
 <!-- X TIMELINE -->
-<div style="border-top: 1px solid var(--border); padding: 5rem 2rem; max-width: 900px; margin: 0 auto;">
-  <p style="font-family:'Noto Sans JP',sans-serif; font-size:0.6rem; letter-spacing:0.5em; color:var(--red); text-transform:uppercase; margin-bottom:0.8rem;">SNS</p>
-  <h2 style="font-family:'Noto Serif JP',serif; font-size:clamp(1.3rem,3vw,1.8rem); font-weight:700; color:var(--text); margin-bottom:0.5rem;">最新情報</h2>
-  <div style="width:40px; height:1px; background:var(--red); margin-bottom:2rem;"></div>
-  <div style="display:flex; justify-content:center;">
+<div style="border-top:1px solid var(--border);padding:5rem 2rem;max-width:900px;margin:0 auto;">
+  <p class="section-eyebrow">SNS</p>
+  <h2 class="section-title">最新情報</h2>
+  <div class="section-rule"></div>
+  <div style="display:flex;justify-content:center;">
     <blockquote class="twitter-tweet" data-theme="dark" data-width="550">
       <a href="https://x.com/spiceofvrinks/status/2072435797371027600"></a>
     </blockquote>
@@ -564,44 +494,45 @@
 <!-- REGISTER -->
 <div class="register-wrap" id="register">
   <p class="section-eyebrow">Entry</p>
-  <h2 class="section-title" style="font-family:'Noto Serif JP',serif;">参加の申し込み</h2>
+  <h2 class="section-title">参加の申し込み</h2>
   <div class="section-rule" style="margin:0.5rem auto 2rem;"></div>
-  <p class="register-body">
-    定員に達し次第、門を閉ざす。<br>
-    覚悟のある者は、早急に名を刻め。
-  </p>
+  <p class="register-body">定員に達し次第、門を閉ざす。<br>覚悟のある者は、早急に名を刻め。</p>
   <a href="#" class="register-btn">名を刻む</a>
 </div>
 
+<!-- ORGANIZER -->
+<section id="organizer" style="border-top:1px solid var(--border);">
+  <p class="section-eyebrow">Organizer</p>
+  <h2 class="section-title">主催団体</h2>
+  <div class="section-rule"></div>
+  <div class="organizer-box">
+    <div class="organizer-logo">LOGO</div>
+    <div style="flex:1;min-width:240px;">
+      <p class="organizer-name">主催団体名</p>
+      <p class="organizer-desc">ここに主催団体の紹介文を入れてください。活動内容や理念、これまでの実績などを記載できます。</p>
+      <a href="#" class="organizer-link">公式サイトへ →</a>
+    </div>
+  </div>
+</section>
+
 <footer>
   &copy; 二〇二六　Spice Of Tournament　All Rights Reserved
-  <div class="footer-curse">
-    ─ この頁を訪れた者は、すでに名簿に記されている ─
-  </div>
+  <div class="footer-curse">─ 灯りを失った者の記録は、ここには残らない ─</div>
 </footer>
 
 <script>
-  const target = new Date('2026-07-31T22:00:00+09:00');
-  function update() {
-    const now = new Date();
-    const diff = target - now;
-    if (diff <= 0) {
-      ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => {
-        document.getElementById(id).textContent = '00';
-      });
-      return;
-    }
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    document.getElementById('cd-days').textContent  = String(d).padStart(2,'0');
-    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
-    document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
-    document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
-  }
-  update();
-  setInterval(update, 1000);
+const target=new Date('2026-07-31T22:00:00+09:00');
+function update(){
+  const now=new Date();
+  const diff=target-now;
+  if(diff<=0){['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id=>document.getElementById(id).textContent='00');return;}
+  const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+  document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
+  document.getElementById('cd-hours').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-mins').textContent=String(m).padStart(2,'0');
+  document.getElementById('cd-secs').textContent=String(s).padStart(2,'0');
+}
+update();setInterval(update,1000);
 </script>
 </body>
 </html>
