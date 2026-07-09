@@ -21,9 +21,9 @@ const newsData = [
     tweetUrl: "https://x.com/tsubameyakoga/status/2070809747377504687?s=46"
   },
   {
-    title: "お知らせタイトル③",
+    title: "特設サイト開設",
     date: "2026.7.9",
-    desc: "特設サイトを開設しました。",
+    desc: "大会の情報をまとめていきます。今後の情報はここをチェック！",
     tweetUrl: ""
   }
 ];
