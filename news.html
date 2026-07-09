@@ -91,15 +91,30 @@ for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m
 (function(){
   const list = document.getElementById('news-list-full');
   if(!list || typeof newsData === 'undefined') return;
-  list.innerHTML = newsData.map(n => `
-    <a class="news-item" href="${n.tweetUrl || '#'}" ${n.tweetUrl ? 'target="_blank" rel="noopener"' : ''}>
+  list.innerHTML = newsData.map(n => {
+    if(n.tweetUrl){
+      return `
+      <div class="news-item" style="cursor:default;">
+        <p class="news-date">${n.date}</p>
+        <p class="news-title">${n.title}</p>
+        ${n.desc ? `<p class="news-desc" style="margin-bottom:1rem;">${n.desc}</p>` : ''}
+        <div style="display:flex;justify-content:center;margin-top:1rem;">
+          <blockquote class="twitter-tweet" data-theme="dark" data-width="500">
+            <a href="${n.tweetUrl}"></a>
+          </blockquote>
+        </div>
+      </div>`;
+    }
+    return `
+    <a class="news-item" href="#">
       <p class="news-date">${n.date}</p>
       <p class="news-title">${n.title}</p>
       ${n.desc ? `<p class="news-desc">${n.desc}</p>` : ''}
-      ${n.tweetUrl ? `<p class="news-link-tag">Xの投稿を見る →</p>` : ''}
-    </a>
-  `).join('');
+    </a>`;
+  }).join('');
+  if(window.twttr && window.twttr.widgets){ window.twttr.widgets.load(); }
 })();
 </script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>
