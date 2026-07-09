@@ -272,6 +272,10 @@ section{padding:5rem 2rem;max-width:900px;margin:0 auto;}
   text-decoration:none;transition:border-color 0.2s,transform 0.2s;
 }
 .sponsor-tile:hover{border-color:var(--lamp-dim);transform:translateY(-2px);}
+
+.ambassador-link{transition:opacity 0.2s;}
+.ambassador-link:hover{opacity:0.8;}
+.ambassador-link:hover > div{border-color:var(--lamp-dim);}
 .prize-card{background:var(--paper);border:1px solid var(--border);padding:1.8rem;text-align:center;transition:border-color 0.2s;}
 .prize-card.top{border-color:var(--lamp);}
 .prize-card:hover{border-color:var(--lamp-dim);}
@@ -505,38 +509,38 @@ for(let i=0;i<14;i++){
   <div class="section-rule"></div>
   <p class="preview-text">この大会を盛り上げてくださる、8名のアンバサダーをご紹介します。</p>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1.2rem;">
-    <div style="text-align:center;">
-      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;">PHOTO</div>
-      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー①</p>
-    </div>
-    <div style="text-align:center;">
-      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;">PHOTO</div>
-      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー②</p>
-    </div>
-    <div style="text-align:center;">
-      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;">PHOTO</div>
-      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー③</p>
-    </div>
-    <div style="text-align:center;">
-      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;">PHOTO</div>
-      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー④</p>
-    </div>
-    <div style="text-align:center;">
-      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;">PHOTO</div>
-      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー⑤</p>
-    </div>
-    <div style="text-align:center;">
-      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;">PHOTO</div>
-      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー⑥</p>
-    </div>
-    <div style="text-align:center;">
-      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;">PHOTO</div>
-      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー⑦</p>
-    </div>
-    <div style="text-align:center;">
-      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;">PHOTO</div>
-      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー⑧</p>
-    </div>
+    <a href="https://x.com/TakakoMM2019" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;"><img src="images/ambassador1.jpg" style="width:100%;height:100%;object-fit:cover;"></div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">真園萬子</p>
+    </a>
+    <a href="https://x.com/NoControl1999" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;"><img src="images/ambassador2.jpg" style="width:100%;height:100%;object-fit:cover;"></div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">いななほ</p>
+    </a>
+    <a href="https://x.com/_Yuuki_k_" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;"><img src="images/ambassador3.jpg" style="width:100%;height:100%;object-fit:cover;"></div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">神威ユウキ</p>
+    </a>
+    <a href="https://x.com/Sasugo_3" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;"><img src="images/ambassador4.jpg" style="width:100%;height:100%;object-fit:cover;"></div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">Sasugo</p>
+    </a>
+    <a href="https://x.com/dahukokko_H" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;"><img src="images/ambassador5.jpg" style="width:100%;height:100%;object-fit:cover;"></div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">ちーぬちゃん</p>
+    </a>
+    <a href="https://x.com/HiyoPiyo_VRC" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;"><img src="images/ambassador6.jpg" style="width:100%;height:100%;object-fit:cover;"></div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">ひよこぴよぴよ</p>
+    </a>
+    <a href="https://x.com/MarySweetDream" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;"><img src="images/ambassador7.jpg" style="width:100%;height:100%;object-fit:cover;"></div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">メアリ</p>
+    </a>
+    <a href="https://x.com/matsu_rina_0811" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;"><img src="images/ambassador8.jpg" style="width:100%;height:100%;object-fit:cover;"></div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">松本莉奈</p>
+    </a>
   </div>
 </section>
 
@@ -634,13 +638,28 @@ for(let i=0;i<14;i++){
   const list = document.getElementById('news-list');
   if(!list || typeof newsData === 'undefined') return;
   const items = newsData.slice(0,3);
-  list.innerHTML = items.map(n => `
-    <a href="${n.tweetUrl || 'news.html'}" ${n.tweetUrl ? 'target="_blank" rel="noopener"' : ''} style="display:block;background:var(--paper);border:1px solid var(--border);padding:1.2rem 1.5rem;text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--lamp-dim)'" onmouseout="this.style.borderColor='var(--border)'">
+  list.innerHTML = items.map(n => {
+    if(n.tweetUrl){
+      return `
+      <div style="background:var(--paper);border:1px solid var(--border);padding:1.2rem 1.5rem;">
+        <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;color:var(--lamp);letter-spacing:0.1em;margin-bottom:0.4rem;">${n.date}</p>
+        <p style="font-family:'Noto Serif JP',serif;font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:0.8rem;">${n.title}</p>
+        <div style="display:flex;justify-content:center;">
+          <blockquote class="twitter-tweet" data-theme="dark" data-width="500">
+            <a href="${n.tweetUrl}"></a>
+          </blockquote>
+        </div>
+      </div>`;
+    }
+    return `
+    <a href="news.html" style="display:block;background:var(--paper);border:1px solid var(--border);padding:1.2rem 1.5rem;text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--lamp-dim)'" onmouseout="this.style.borderColor='var(--border)'">
       <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;color:var(--lamp);letter-spacing:0.1em;margin-bottom:0.4rem;">${n.date}</p>
       <p style="font-family:'Noto Serif JP',serif;font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:0.3rem;">${n.title}</p>
       ${n.desc ? `<p style="font-family:'Noto Sans JP',sans-serif;font-size:0.78rem;color:var(--muted);line-height:1.7;">${n.desc}</p>` : ''}
-    </a>
-  `).join('');
+    </a>`;
+  }).join('');
+  // Twitterウィジェットの再読み込み（埋め込みを描画するため）
+  if(window.twttr && window.twttr.widgets){ window.twttr.widgets.load(); }
 })();
 </script>
 
