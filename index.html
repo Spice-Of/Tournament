@@ -165,10 +165,17 @@ nav .nav-home{color:var(--text);margin-right:auto;}
   margin:2rem auto;
 }
 .hero-date{
-  font-size:clamp(0.9rem,2.5vw,1.15rem);
+  font-size:clamp(1.1rem,3.5vw,1.6rem);
   color:var(--muted);letter-spacing:0.25em;
+  margin-top:0.5rem;
 }
-.hero-date span{color:var(--lamp-bright);}
+.hero-date span{
+  color:var(--lamp-bright);
+  font-weight:700;
+  font-size:1.15em;
+  margin-left:0.3em;
+  animation:lampGlow 4.5s ease-in-out infinite;
+}
 .hero-cta{
   margin-top:3rem;display:inline-block;
   padding:1rem 3rem;
@@ -255,9 +262,9 @@ section{padding:5rem 2rem;max-width:900px;margin:0 auto;}
   display:grid;grid-template-columns:5rem 1fr;gap:1.5rem;
   padding:1.5rem 0;border-bottom:1px solid var(--border);align-items:start;
 }
-.schedule-time{font-size:0.9rem;color:var(--lamp-bright);padding-top:0.1rem;letter-spacing:0.05em;}
+.schedule-time{font-size:1rem;font-weight:500;color:var(--muted);padding-top:0.1rem;letter-spacing:0.05em;}
 .schedule-name{font-weight:700;margin-bottom:0.3rem;letter-spacing:0.05em;}
-.schedule-desc{font-size:0.8rem;color:var(--muted);font-family:'Noto Sans JP',sans-serif;}
+.schedule-desc{font-size:1rem;font-weight:700;color:var(--lamp-bright);font-family:'Noto Sans JP',sans-serif;letter-spacing:0.05em;}
 
 /* prizes preview grid */
 .prize-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:2rem;}
@@ -460,15 +467,15 @@ for(let i=0;i<14;i++){
   <div class="section-rule"></div>
   <ul class="schedule-list">
     <li class="schedule-item">
-      <span class="schedule-time">Day 1<br><small style="font-size:0.7rem;color:var(--muted);">7/31 金</small></span>
+      <span class="schedule-time">Day 1<br><small style="font-size:1.3rem;font-weight:900;color:var(--lamp-bright);text-shadow:0 0 14px rgba(255,68,68,0.5);">7/31 金</small></span>
       <div><p class="schedule-name">予選一日目</p><p class="schedule-desc">22:00 〜 24:00（2時間）</p></div>
     </li>
     <li class="schedule-item">
-      <span class="schedule-time">Day 2<br><small style="font-size:0.7rem;color:var(--muted);">8/1 土</small></span>
+      <span class="schedule-time">Day 2<br><small style="font-size:1.3rem;font-weight:900;color:var(--lamp-bright);text-shadow:0 0 14px rgba(255,68,68,0.5);">8/1 土</small></span>
       <div><p class="schedule-name">予選二日目</p><p class="schedule-desc">22:00 〜 24:00（2時間）</p></div>
     </li>
     <li class="schedule-item">
-      <span class="schedule-time">Day 3<br><small style="font-size:0.7rem;color:var(--muted);">8/2 日</small></span>
+      <span class="schedule-time">Day 3<br><small style="font-size:1.3rem;font-weight:900;color:var(--lamp-bright);text-shadow:0 0 14px rgba(255,68,68,0.5);">8/2 日</small></span>
       <div><p class="schedule-name">決勝戦</p><p class="schedule-desc">21:00 〜 23:00（2時間）</p></div>
     </li>
   </ul>
