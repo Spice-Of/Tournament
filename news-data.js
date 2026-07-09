@@ -9,21 +9,21 @@
 
 const newsData = [
   {
-    title: "エントリー受付を開始しました",
-    date: "2026.7.10",
-    desc: "Spice Of Tournament 参加登録の受付を開始しました。",
-    tweetUrl: "https://x.com/spiceofvrinks/status/2072435797371027600"
+    title: "アンバサダーが決まりました！",
+    date: "2026.7.7",
+    desc: "大会を盛りあげてくれます。要チェック！",
+    tweetUrl: "https://x.com/SpiceOfVRinks/status/2074327921624567986?s=20"
   },
   {
-    title: "お知らせタイトル②",
-    date: "2026.—.—",
-    desc: "ここに説明文を入れてください。",
-    tweetUrl: ""
+    title: "紹介記事",
+    date: "2026.6.27",
+    desc: "ブログ「ツバメヤロク」様に紹介いただきました。",
+    tweetUrl: "https://x.com/tsubameyakoga/status/2070809747377504687?s=46"
   },
   {
     title: "お知らせタイトル③",
-    date: "2026.—.—",
-    desc: "ここに説明文を入れてください。",
+    date: "2026.7.9",
+    desc: "特設サイトを開設しました。",
     tweetUrl: ""
   }
 ];
