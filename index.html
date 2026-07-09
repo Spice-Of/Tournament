@@ -261,6 +261,17 @@ section{padding:5rem 2rem;max-width:900px;margin:0 auto;}
 
 /* prizes preview grid */
 .prize-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:2rem;}
+
+.sponsor-tile-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:0.8rem;}
+.sponsor-tile{
+  background:var(--paper);border:1px solid var(--border);
+  height:80px;padding:0.8rem 1rem;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;color:var(--text);
+  letter-spacing:0.03em;line-height:1.5;
+  text-decoration:none;transition:border-color 0.2s,transform 0.2s;
+}
+.sponsor-tile:hover{border-color:var(--lamp-dim);transform:translateY(-2px);}
 .prize-card{background:var(--paper);border:1px solid var(--border);padding:1.8rem;text-align:center;transition:border-color 0.2s;}
 .prize-card.top{border-color:var(--lamp);}
 .prize-card:hover{border-color:var(--lamp-dim);}
@@ -342,9 +353,9 @@ for(let i=0;i<14;i++){
 <nav>
   <a href="index.html" class="nav-home active">🔦 Spice Of Tournament</a>
   <a href="prizes.html">賞品紹介</a>
-  <a href="sponsors.html">協賛団体</a>
   <a href="participants.html">参加団体</a>
   <a href="sale.html">連動セール</a>
+  <a href="news.html">関連情報</a>
 </nav>
 
 <!-- HERO -->
@@ -405,6 +416,20 @@ for(let i=0;i<14;i++){
       <span class="game-tag">トーナメント形式</span>
       <span class="game-tag">3日間</span>
     </div>
+    <div style="margin-top:1.5rem;">
+      <a href="https://vazar.jp/product/maigovr/" target="_blank" rel="noopener" class="link-btn">迷子VR 公式ページへ →</a>
+    </div>
+  </div>
+</section>
+
+<!-- POSTER -->
+<section id="poster" style="border-top:1px solid var(--border);">
+  <p class="section-eyebrow">Poster</p>
+  <h2 class="section-title">告知ポスター</h2>
+  <div class="section-rule"></div>
+  <div style="width:100%;max-width:500px;margin:0 auto;aspect-ratio:1/1.414;background:var(--paper);border:1px dashed rgba(204,34,34,0.3);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.7rem;letter-spacing:0.1em;overflow:hidden;">
+    <img src="images/poster.jpg" alt="告知ポスター" style="width:100%;height:100%;object-fit:contain;display:none;" onload="this.style.display='block';this.parentElement.style.border='none';this.parentElement.style.background='none';" onerror="this.style.display='none';">
+    POSTER
   </div>
 </section>
 
@@ -473,49 +498,90 @@ for(let i=0;i<14;i++){
   </div>
 </section>
 
+<!-- AMBASSADORS -->
+<section id="ambassadors" style="border-top:1px solid var(--border);">
+  <p class="section-eyebrow">Ambassadors</p>
+  <h2 class="section-title">アンバサダー</h2>
+  <div class="section-rule"></div>
+  <p class="preview-text">この大会を盛り上げてくださる、8名のアンバサダーをご紹介します。</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1.2rem;">
+    <div style="text-align:center;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;">PHOTO</div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー①</p>
+    </div>
+    <div style="text-align:center;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;">PHOTO</div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー②</p>
+    </div>
+    <div style="text-align:center;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;">PHOTO</div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー③</p>
+    </div>
+    <div style="text-align:center;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;">PHOTO</div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー④</p>
+    </div>
+    <div style="text-align:center;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;">PHOTO</div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー⑤</p>
+    </div>
+    <div style="text-align:center;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;">PHOTO</div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー⑥</p>
+    </div>
+    <div style="text-align:center;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;">PHOTO</div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー⑦</p>
+    </div>
+    <div style="text-align:center;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;">PHOTO</div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー⑧</p>
+    </div>
+  </div>
+</section>
+
 <!-- SPONSORS PREVIEW -->
 <section id="sponsors-preview" style="border-top:1px solid var(--border);">
   <p class="section-eyebrow">Sponsors</p>
   <h2 class="section-title">応援協力団体</h2>
   <div class="section-rule"></div>
-  <p class="preview-text">
-    株式会社バーチャルパーティー<br>
-    アンドエスティメタバース<br>
-    NUNUPC<br>
-    VR怪談ライブ Hauntopia<br>
-    ゆるゲMEET<br>
-    イベント応援団体『EVENesT』<br>
-    ＶＲＣキャストリンク<br>
-    異界商店<br>
-    カロン工房<br>
-    ナマズ工廠<br>
-    猫又製作所<br>
-    Rest<br>
-    fatdesign<br>
-    ゆきつねのお宿<br>
-    二階建て倉庫<br>
-    Through the Looking-Glass<br>
-    下忍ヒビキの隠れ里<br>
-    妖具屋零れ桜<br>
-    ゆめうつつクローゼット<br>
-    MONUMENTS.もにゅめんつ<br>
-    NekoNoNaguriai<br>
-    Isp Tec Company<br>
-    Spices<br>
-    昭和メトロ<br>
-    ショップみしま<br>
-    茶屋はるどりのおみやげ屋<br>
-    ゆめゆめめ<br>
-    すもももももももものうち<br>
-    蜻蛉堂<br>
-    木炭商店<br>
-    ぬまぼ屋さん<br>
-    おもちやさん<br>
-    ややの３D屋<br>
-    仮想空間装飾品店NeRosa<br>
-    (順不同,敬称略)
-  </p>
-  <a href="sponsors.html" class="link-btn dim">応援協力団体一覧を見る →</a>
+  <div class="sponsor-tile-grid">
+    <a href="https://virtualparty.jp/" target="_blank" rel="noopener" class="sponsor-tile">株式会社バーチャルパーティー</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">アンドエスティメタバース</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">NUNUPC</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">VR怪談ライブ Hauntopia</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ゆるゲMEET</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">イベント応援団体『EVENesT』</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ＶＲＣキャストリンク</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">異界商店</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">カロン工房</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ナマズ工廠</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">猫又製作所</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">Rest</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">fatdesign</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ゆきつねのお宿</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">二階建て倉庫</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">Through the Looking-Glass</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">下忍ヒビキの隠れ里</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">妖具屋零れ桜</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ゆめうつつクローゼット</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">MONUMENTS.もにゅめんつ</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">NekoNoNaguriai</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">Isp Tec Company</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">Spices</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">昭和メトロ</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ショップみしま</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">茶屋はるどりのおみやげ屋</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ゆめゆめめ</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">すもももももももものうち</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">蜻蛉堂</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">木炭商店</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ぬまぼ屋さん</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">おもちやさん</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ややの３D屋</a>
+    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">仮想空間装飾品店NeRosa</a>
+  </div>
+  <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.7rem;color:var(--muted);text-align:right;margin-top:1rem;">(順不同,敬称略)</p>
 </section>
 
 <!-- PARTICIPANTS PREVIEW -->
@@ -548,6 +614,35 @@ for(let i=0;i<14;i++){
   </div>
 </div>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<!-- RELATED NEWS -->
+<section id="news" style="border-top:1px solid var(--border);">
+  <p class="section-eyebrow">Related News</p>
+  <h2 class="section-title">関連情報</h2>
+  <div class="section-rule"></div>
+  <div id="news-list" style="display:flex;flex-direction:column;gap:1rem;">
+    <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;color:var(--muted);">読み込み中…</p>
+  </div>
+  <div style="text-align:center;margin-top:2rem;">
+    <a href="news.html" class="link-btn dim">関連情報一覧を見る →</a>
+  </div>
+</section>
+
+<script src="news-data.js"></script>
+<script>
+(function(){
+  const list = document.getElementById('news-list');
+  if(!list || typeof newsData === 'undefined') return;
+  const items = newsData.slice(0,3);
+  list.innerHTML = items.map(n => `
+    <a href="${n.tweetUrl || 'news.html'}" ${n.tweetUrl ? 'target="_blank" rel="noopener"' : ''} style="display:block;background:var(--paper);border:1px solid var(--border);padding:1.2rem 1.5rem;text-decoration:none;transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--lamp-dim)'" onmouseout="this.style.borderColor='var(--border)'">
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;color:var(--lamp);letter-spacing:0.1em;margin-bottom:0.4rem;">${n.date}</p>
+      <p style="font-family:'Noto Serif JP',serif;font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:0.3rem;">${n.title}</p>
+      ${n.desc ? `<p style="font-family:'Noto Sans JP',sans-serif;font-size:0.78rem;color:var(--muted);line-height:1.7;">${n.desc}</p>` : ''}
+    </a>
+  `).join('');
+})();
+</script>
 
 <!-- REGISTER -->
 <div class="register-wrap" id="register">
