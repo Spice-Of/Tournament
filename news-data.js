@@ -8,6 +8,13 @@
 // desc     : 一言説明（省略可、空文字でもOK）
 
 const newsData = [
+{
+    title: "【ASMR怪談動画】",
+    date: "2026.7.12",
+    desc: "アンバサダーのいななほさんが、ASMR怪談動画を投稿してくださいました。ぜひご覧ください。",
+    tweetUrl: "https://x.com/NoControl1999/status/2076255987951120429?s=20"
+  }
+
   {
     title: "参加募集は締め切りました",
     date: "2026.7.12",
