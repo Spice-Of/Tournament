@@ -194,7 +194,7 @@ function matchTable(teams, scoreKey, groupLetter){
   const rows = withScore.map((t,i) => `
     <tr>
       <td class="num">${i+1}</td>
-      <td>${groupLetter}-${escapeHtml(t.number)} ${escapeHtml(t.name)}</td>
+      <td>${groupLetter}-${escapeHtml(t.number)}</td>
       <td class="pt">${pt(t._s)}</td>
     </tr>`).join('');
   return `<table><tbody>${rows}</tbody></table>`;
@@ -233,28 +233,34 @@ function renderGroup(letter, teams){
   }
   const g = computeGroup(teams);
 
-  const overallRows = g.overall.map((t,i) => `
-    <tr class="${i===0 ? 'rank-1' : ''}">
+  // 代表バッジは「全チームの合計点が確定した」場合のみ、1位のチームに表示する
+  const groupDecided = g.overall.every(t => t._total !== null);
+
+  const overallRows = g.overall.map((t,i) => {
+    const isRepresentative = groupDecided && i === 0;
+    return `
+    <tr class="${isRepresentative ? 'rank-1' : ''}">
       <td class="num">${i+1}</td>
-      <td>${letter}-${escapeHtml(t.number)} ${escapeHtml(t.name)}${i===0 ? '<span class="badge">代表</span>' : ''}</td>
+      <td>${letter}-${escapeHtml(t.number)} ${escapeHtml(t.name)}${isRepresentative ? '<span class="badge">代表</span>' : ''}</td>
       <td class="pt">${pt(t._m1)}</td>
       <td class="pt">${pt(t._m2)}</td>
       <td class="pt">${pt(t._total)}</td>
-    </tr>`).join('');
+    </tr>`;
+  }).join('');
 
   el.innerHTML = `
     <h2><span class="g-eyebrow">GROUP</span>${letter}グループ</h2>
 
     <div class="section-label">第1試合</div>
     <div class="match-pair">
-      <div class="mini-card"><div class="mini-title">組1</div>${matchTable(g.q1, 'match1_score', letter)}</div>
-      <div class="mini-card"><div class="mini-title">組2</div>${matchTable(g.q2, 'match1_score', letter)}</div>
+      <div class="mini-card"><div class="mini-title">${letter}-East</div>${matchTable(g.q1, 'match1_score', letter)}</div>
+      <div class="mini-card"><div class="mini-title">${letter}-West</div>${matchTable(g.q2, 'match1_score', letter)}</div>
     </div>
 
     <div class="section-label">第2試合</div>
     <div class="match-pair">
-      <div class="mini-card"><div class="mini-title">上位ブロック</div>${matchTable(g.upperBlock, 'match2_score', letter)}</div>
-      <div class="mini-card"><div class="mini-title">下位ブロック</div>${matchTable(g.lowerBlock, 'match2_score', letter)}</div>
+      <div class="mini-card"><div class="mini-title">${letter}-East</div>${matchTable(g.upperBlock, 'match2_score', letter)}</div>
+      <div class="mini-card"><div class="mini-title">${letter}-West</div>${matchTable(g.lowerBlock, 'match2_score', letter)}</div>
     </div>
 
     <div class="section-label">合計順位</div>
