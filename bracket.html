@@ -134,7 +134,7 @@
   .match-pair{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 
   table{ width:100%; border-collapse:collapse; font-size:12.5px; }
-  th{ text-align:left; font-weight:500; color:var(--paper-dim); font-size:10.5px; letter-spacing:.05em; padding:4px 6px; border-bottom:1px solid var(--line); }
+  th{ text-align:left; font-weight:500; color:var(--paper-dim); font-size:10.5px; letter-spacing:.05em; padding:4px 6px; border-bottom:1px solid var(--line); white-space:nowrap; }
   td{ padding:5px 6px; border-bottom:1px solid var(--line); color:var(--paper); }
   tr:last-child td{ border-bottom:none; }
   .num{ color:var(--paper-dim); font-variant-numeric:tabular-nums; width:26px; }
@@ -385,7 +385,7 @@ function renderGroup(letter, teams){
             <col style="width:38px">
             <col style="width:42px">
           </colgroup>
-          <thead><tr><th></th><th>付番</th><th>団体名</th><th class="pt">1試合目</th><th class="pt">2試合目</th><th class="pt">合計</th></tr></thead>
+          <thead><tr><th></th><th>付番</th><th>団体名</th><th class="pt">第1</th><th class="pt">第2</th><th class="pt">合計</th></tr></thead>
           <tbody>${overallRows}</tbody>
         </table>
       </div>
