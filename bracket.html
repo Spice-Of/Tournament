@@ -72,7 +72,7 @@
     min-width: 1300px !important;
   }
   body.force-desktop .group-body{
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: 1.2fr 1fr !important;
   }
 
   .pc-toggle{
@@ -121,7 +121,7 @@
 
   .group-body{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.2fr 1fr;
     gap: 18px;
     align-items: start;
   }
@@ -143,6 +143,11 @@
 
   .mini-card{ background:var(--panel-2); border:1px solid var(--line); border-radius:2px; padding:8px 8px 4px; }
   .mini-card .mini-title{ font-size:10px; color:var(--lamp-dim); letter-spacing:.1em; margin-bottom:4px; }
+
+  .total-table{ table-layout: fixed; }
+  .total-table .teamnum{ color: var(--paper-dim); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .total-table .teamname{ white-space: normal; overflow-wrap: break-word; line-height: 1.35; }
+  .total-table tr.rank-1 .teamnum{ color: var(--lamp); }
 
   .total-table tr.rank-1 td{ color:#fff; }
   .total-table tr.rank-1{ background: linear-gradient(90deg, rgba(217,164,65,.14), transparent); }
@@ -296,7 +301,8 @@ function renderGroup(letter, teams){
     return `
     <tr class="${isRepresentative ? 'rank-1' : ''}">
       <td class="num">${i+1}</td>
-      <td>${letter}-${escapeHtml(t.number)} ${escapeHtml(t.name)}${isRepresentative ? '<span class="badge">代表</span>' : ''}</td>
+      <td class="teamnum">${letter}-${escapeHtml(t.number)}</td>
+      <td class="teamname">${escapeHtml(t.name)}${isRepresentative ? '<span class="badge">代表</span>' : ''}</td>
       <td class="pt">${pt(t._m1)}</td>
       <td class="pt">${pt(t._m2)}</td>
       <td class="pt">${pt(t._total)}</td>
@@ -310,7 +316,15 @@ function renderGroup(letter, teams){
       <div class="group-body-left">
         <div class="section-label">合計順位</div>
         <table class="total-table">
-          <thead><tr><th></th><th>団体名</th><th class="pt">1試合目</th><th class="pt">2試合目</th><th class="pt">合計</th></tr></thead>
+          <colgroup>
+            <col style="width:20px">
+            <col style="width:44px">
+            <col>
+            <col style="width:38px">
+            <col style="width:38px">
+            <col style="width:42px">
+          </colgroup>
+          <thead><tr><th></th><th>付番</th><th>団体名</th><th class="pt">1試合目</th><th class="pt">2試合目</th><th class="pt">合計</th></tr></thead>
           <tbody>${overallRows}</tbody>
         </table>
       </div>
