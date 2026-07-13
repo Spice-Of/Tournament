@@ -420,12 +420,14 @@ function renderFinal(teams){
   const withScore = teams.map(t => ({ ...t, _s: toNum(t.score) }));
   withScore.sort((a,b) => (b._s ?? -Infinity) - (a._s ?? -Infinity));
 
+  const hasAllScores = withScore.every(t => t._s !== null);
+
   finalEl.innerHTML = `
     <table>
       <thead><tr><th></th><th>団体名</th><th class="pt">得点</th></tr></thead>
       <tbody>
         ${withScore.map((t,i) => `
-          <tr class="${i===0 ? 'rank-1' : ''}">
+          <tr class="${(hasAllScores && i===0) ? 'rank-1' : ''}">
             <td class="num">${i+1}</td>
             <td>${escapeHtml(t.number)} ${escapeHtml(t.name)}</td>
             <td class="pt">${pt(t._s)}</td>
@@ -433,7 +435,6 @@ function renderFinal(teams){
       </tbody>
     </table>`;
 
-  const hasAllScores = withScore.every(t => t._s !== null);
   if (hasAllScores){
     const champ = withScore[0];
     champEl.innerHTML = `
