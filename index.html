@@ -51,8 +51,8 @@ body{
   color:var(--text);
   font-family:'Noto Serif JP',serif;
   overflow-x:hidden;
-  animation:flicker 14s infinite;
 }
+.flicker-wrap{animation:flicker 14s infinite;}
 body::before{
   content:'';
   position:fixed;inset:0;
@@ -357,6 +357,7 @@ footer{
 
 <div class="side-image left"><img src="Image/side-left.png" alt="" onerror="this.parentElement.style.display='none'"></div>
 <div class="side-image right"><img src="Image/side-right.png" alt="" onerror="this.parentElement.style.display='none'"></div>
+<div class="flicker-wrap">
 
 
 <script>
@@ -725,5 +726,6 @@ function update(){
 }
 update();setInterval(update,1000);
 </script>
+</div>
 </body>
 </html>

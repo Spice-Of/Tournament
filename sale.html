@@ -83,14 +83,8 @@ footer{border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;
 
 <div class="side-image left"><img src="Image/side-left.png" alt="" onerror="this.parentElement.style.display='none'"></div>
 <div class="side-image right"><img src="Image/side-right.png" alt="" onerror="this.parentElement.style.display='none'"></div>
+<div class="flicker-wrap">
 
-
-<div class="side-image left">
-  <img src="images/side-left.png" alt="" onerror="this.parentElement.style.display='none'">
-</div>
-<div class="side-image right">
-  <img src="images/side-right.png" alt="" onerror="this.parentElement.style.display='none'">
-</div>
 <script>
 for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m.style.left=Math.random()*100+'vw';const s=(2+Math.random()*3)+'px';m.style.width=s;m.style.height=s;m.style.animationDuration=(10+Math.random()*14)+'s';m.style.animationDelay=(Math.random()*12)+'s';document.body.appendChild(m);}
 </script>
@@ -154,5 +148,6 @@ for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m
   &copy; 二〇二六　Spice Of Tournament　All Rights Reserved
   <div class="footer-curse">─ 灯りを失った者の記録は、ここには残らない ─</div>
 </footer>
+</div>
 </body>
 </html>
