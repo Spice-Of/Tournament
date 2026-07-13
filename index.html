@@ -339,6 +339,13 @@ footer{
 }
 .footer-curse{margin-top:1.2rem;color:#3a2a10;font-size:0.6rem;letter-spacing:0.08em;}
 
+
+/* SIDE IMAGES (PC only) */
+.side-image{position:fixed;top:0;height:100vh;width:calc((100vw - 900px) / 2);max-width:260px;z-index:10;pointer-events:none;display:flex;align-items:center;justify-content:center;opacity:0.9;}
+.side-image.left{left:0;}
+.side-image.right{right:0;}
+.side-image img{max-width:90%;max-height:90vh;object-fit:contain;}
+@media (max-width:1180px){.side-image{display:none;}}
 @media (max-width:480px){
   .schedule-item{grid-template-columns:1fr;gap:0.3rem;}
   nav{gap:1rem;font-size:0.65rem;}
@@ -347,6 +354,10 @@ footer{
 </style>
 </head>
 <body>
+
+<div class="side-image left"><img src="images/side-left.png" alt="" onerror="this.parentElement.style.display='none'"></div>
+<div class="side-image right"><img src="images/side-right.png" alt="" onerror="this.parentElement.style.display='none'"></div>
+
 
 <script>
 for(let i=0;i<14;i++){
