@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>トーナメント表 | Spice Of Tournament</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap');
+
+  :root{
+    --bg: #0a0908;
+    --panel: #131110;
+    --panel-2: #1a1613;
+    --line: #2a2420;
+    --paper: #e8e0d0;
+    --paper-dim: #8f8674;
+    --lamp: #d9a441;
+    --lamp-dim: #7a5c22;
+    --blood: #7a2b2b;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    padding: 40px 16px 80px;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -5%, rgba(217,164,65,0.07), transparent 60%),
+      var(--bg);
+    color: var(--paper);
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+  }
+
+  h1,h2,h3{ font-family:'Shippori Mincho', serif; margin:0; }
+
+  .page-head{ text-align:center; margin-bottom: 40px; }
+  .page-head .eyebrow{ display:block; font-size:12px; letter-spacing:.35em; color:var(--lamp-dim); margin-bottom:8px; }
+  .page-head h1{ font-size:28px; letter-spacing:.1em; text-shadow:0 0 18px rgba(217,164,65,.25); }
+
+  /* ---- layout: A top-left / B top-right / center col / C bottom-left / D bottom-right ---- */
+  .bracket{
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 300px 1fr;
+    grid-template-areas:
+      "groupA center groupB"
+      "groupC center groupD";
+    gap: 24px;
+    align-items: start;
+  }
+  .slot-A{ grid-area: groupA; }
+  .slot-B{ grid-area: groupB; }
+  .slot-C{ grid-area: groupC; }
+  .slot-D{ grid-area: groupD; }
+  .slot-center{ grid-area: center; display:flex; flex-direction:column; align-items:center; gap:18px; }
+
+  @media (max-width: 920px){
+    .bracket{ grid-template-columns: 1fr; grid-template-areas:
+      "center" "groupA" "groupB" "groupC" "groupD"; }
+  }
+
+  /* ---- crown ---- */
+  .crown-box{ text-align:center; }
+  .crown-icon{ font-size: 30px; color: var(--lamp); text-shadow:0 0 16px rgba(217,164,65,.6); animation: flicker 3.2s infinite ease-in-out; }
+  @keyframes flicker{ 0%,100%{opacity:1;} 45%{opacity:.8;} 50%{opacity:1;} 52%{opacity:.65;} 55%{opacity:1;} }
+  .crown-name{ margin-top:6px; font-family:'Shippori Mincho', serif; font-size:19px; color:#fff; }
+  .crown-number{ font-size:11px; letter-spacing:.15em; color:var(--lamp); }
+  .crown-pending{ color:var(--paper-dim); font-size:12px; }
+
+  /* ---- group panel ---- */
+  .group-panel{
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 18px 16px 20px;
+  }
+  .group-panel h2{
+    font-size:18px; letter-spacing:.12em; color:var(--paper);
+    border-bottom: 1px solid var(--line); padding-bottom:10px; margin-bottom:14px;
+  }
+  .group-panel h2 .g-eyebrow{ display:block; font-size:10px; color:var(--lamp-dim); letter-spacing:.3em; margin-bottom:4px; font-family:'Zen Kaku Gothic New',sans-serif; }
+
+  .section-label{
+    font-size: 11px; letter-spacing:.2em; color: var(--lamp-dim);
+    margin: 14px 0 8px; text-transform:uppercase;
+  }
+
+  .match-pair{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+
+  table{ width:100%; border-collapse:collapse; font-size:12.5px; }
+  th{ text-align:left; font-weight:500; color:var(--paper-dim); font-size:10.5px; letter-spacing:.05em; padding:4px 6px; border-bottom:1px solid var(--line); }
+  td{ padding:5px 6px; border-bottom:1px solid var(--line); color:var(--paper); }
+  tr:last-child td{ border-bottom:none; }
+  .num{ color:var(--paper-dim); font-variant-numeric:tabular-nums; width:26px; }
+  .pt{ text-align:right; font-variant-numeric:tabular-nums; }
+  .pending{ color:var(--paper-dim); }
+
+  .mini-card{ background:var(--panel-2); border:1px solid var(--line); border-radius:2px; padding:8px 8px 4px; }
+  .mini-card .mini-title{ font-size:10px; color:var(--lamp-dim); letter-spacing:.1em; margin-bottom:4px; }
+
+  .total-table tr.rank-1 td{ color:#fff; }
+  .total-table tr.rank-1{ background: linear-gradient(90deg, rgba(217,164,65,.14), transparent); }
+  .total-table tr.rank-1 .num{ color:var(--lamp); }
+  .badge{ font-size:9px; color:var(--lamp); border:1px solid var(--lamp-dim); border-radius:2px; padding:1px 4px; margin-left:6px; letter-spacing:.05em; }
+
+  /* ---- final panel ---- */
+  .final-panel{
+    background: var(--panel);
+    border: 1px solid var(--lamp-dim);
+    border-radius: 2px;
+    padding: 18px 16px;
+    width: 100%;
+    max-width: 280px;
+  }
+  .final-panel h2{ font-size:17px; text-align:center; letter-spacing:.15em; margin-bottom:12px; color:var(--lamp); }
+  .final-panel tr.rank-1 td{ color:#fff; }
+  .final-panel tr.rank-1{ background: linear-gradient(90deg, rgba(217,164,65,.16), transparent); }
+  .final-panel tr.rank-1 .num{ color:var(--lamp); }
+
+  .state{ text-align:center; color:var(--paper-dim); font-size:12px; padding:20px 0; }
+  .state.error{ color:var(--blood); }
+  .updated{ text-align:center; margin-top:32px; font-size:11px; color:var(--paper-dim); letter-spacing:.05em; }
+</style>
+</head>
+<body>
+
+<div class="page-head">
+  <span class="eyebrow">SPICE OF TOURNAMENT</span>
+  <h1>トーナメント表</h1>
+</div>
+
+<div id="bracket" class="bracket">
+  <div class="slot-A"><div id="group-A" class="group-panel"></div></div>
+  <div class="slot-B"><div id="group-B" class="group-panel"></div></div>
+  <div class="slot-C"><div id="group-C" class="group-panel"></div></div>
+  <div class="slot-D"><div id="group-D" class="group-panel"></div></div>
+  <div class="slot-center">
+    <div class="crown-box">
+      <div class="crown-icon">&#9819;</div>
+      <div id="champion"></div>
+    </div>
+    <div class="final-panel">
+      <h2>決勝戦</h2>
+      <div id="final"></div>
+    </div>
+  </div>
+</div>
+
+<div class="updated" id="updated"></div>
+
+<script>
+const GROUPS_CSV = 'groups.csv';
+const FINAL_CSV = 'final.csv';
+const GROUP_LETTERS = ['A','B','C','D'];
+
+function parseCSV(text){
+  text = text.replace(/^\uFEFF/, '').trim();
+  const lines = text.split(/\r\n|\n/).filter(l => l.trim().length > 0);
+  const header = lines[0].split(',').map(h => h.trim().toLowerCase());
+  return lines.slice(1).map(line => {
+    const cells = [];
+    let cur = '', inQuotes = false;
+    for (const ch of line){
+      if (ch === '"'){ inQuotes = !inQuotes; continue; }
+      if (ch === ',' && !inQuotes){ cells.push(cur); cur=''; continue; }
+      cur += ch;
+    }
+    cells.push(cur);
+    const row = {};
+    header.forEach((h,i) => row[h] = (cells[i] || '').trim());
+    return row;
+  });
+}
+
+function toNum(v){
+  if (v === undefined || v === null || v === '') return null;
+  const n = Number(v);
+  return Number.isNaN(n) ? null : n;
+}
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function pt(v){ return v === null ? '<span class="pending">-</span>' : v; }
+
+/* ---- render a small match table (rank / number / name / score) ---- */
+function matchTable(teams, scoreKey, groupLetter){
+  const withScore = teams.map(t => ({...t, _s: toNum(t[scoreKey])}));
+  withScore.sort((a,b) => (b._s ?? -Infinity) - (a._s ?? -Infinity));
+  const rows = withScore.map((t,i) => `
+    <tr>
+      <td class="num">${i+1}</td>
+      <td>${groupLetter}-${escapeHtml(t.number)} ${escapeHtml(t.name)}</td>
+      <td class="pt">${pt(t._s)}</td>
+    </tr>`).join('');
+  return `<table><tbody>${rows}</tbody></table>`;
+}
+
+/* ---- process one group's 8 teams into full bracket data ---- */
+function computeGroup(teams){
+  const sorted = [...teams].sort((a,b) => Number(a.number) - Number(b.number));
+  const q1 = sorted.slice(0,4);
+  const q2 = sorted.slice(4,8);
+
+  const rank = (arr, key) => [...arr].sort((a,b) =>
+    (toNum(b[key]) ?? -Infinity) - (toNum(a[key]) ?? -Infinity));
+
+  const q1Ranked = rank(q1, 'match1_score');
+  const q2Ranked = rank(q2, 'match1_score');
+
+  const upperBlock = [...q1Ranked.slice(0,2), ...q2Ranked.slice(0,2)];
+  const lowerBlock = [...q1Ranked.slice(2,4), ...q2Ranked.slice(2,4)];
+
+  const withTotal = teams.map(t => {
+    const m1 = toNum(t.match1_score);
+    const m2 = toNum(t.match2_score);
+    return { ...t, _m1: m1, _m2: m2, _total: (m1 !== null && m2 !== null) ? m1 + m2 : null };
+  });
+  withTotal.sort((a,b) => (b._total ?? -Infinity) - (a._total ?? -Infinity));
+
+  return { q1: q1Ranked, q2: q2Ranked, upperBlock, lowerBlock, overall: withTotal };
+}
+
+function renderGroup(letter, teams){
+  const el = document.getElementById('group-' + letter);
+  if (!teams || teams.length === 0){
+    el.innerHTML = `<h2><span class="g-eyebrow">GROUP</span>${letter}グループ</h2><div class="state">データなし</div>`;
+    return;
+  }
+  const g = computeGroup(teams);
+
+  const overallRows = g.overall.map((t,i) => `
+    <tr class="${i===0 ? 'rank-1' : ''}">
+      <td class="num">${i+1}</td>
+      <td>${letter}-${escapeHtml(t.number)} ${escapeHtml(t.name)}${i===0 ? '<span class="badge">代表</span>' : ''}</td>
+      <td class="pt">${pt(t._m1)}</td>
+      <td class="pt">${pt(t._m2)}</td>
+      <td class="pt">${pt(t._total)}</td>
+    </tr>`).join('');
+
+  el.innerHTML = `
+    <h2><span class="g-eyebrow">GROUP</span>${letter}グループ</h2>
+
+    <div class="section-label">第1試合</div>
+    <div class="match-pair">
+      <div class="mini-card"><div class="mini-title">組1</div>${matchTable(g.q1, 'match1_score', letter)}</div>
+      <div class="mini-card"><div class="mini-title">組2</div>${matchTable(g.q2, 'match1_score', letter)}</div>
+    </div>
+
+    <div class="section-label">第2試合</div>
+    <div class="match-pair">
+      <div class="mini-card"><div class="mini-title">上位ブロック</div>${matchTable(g.upperBlock, 'match2_score', letter)}</div>
+      <div class="mini-card"><div class="mini-title">下位ブロック</div>${matchTable(g.lowerBlock, 'match2_score', letter)}</div>
+    </div>
+
+    <div class="section-label">合計順位</div>
+    <table class="total-table">
+      <thead><tr><th></th><th>団体名</th><th class="pt">1試合目</th><th class="pt">2試合目</th><th class="pt">合計</th></tr></thead>
+      <tbody>${overallRows}</tbody>
+    </table>
+  `;
+}
+
+function renderFinal(teams){
+  const finalEl = document.getElementById('final');
+  const champEl = document.getElementById('champion');
+
+  if (!teams || teams.length === 0){
+    finalEl.innerHTML = '<div class="state">予選終了までお待ちください</div>';
+    champEl.innerHTML = '<div class="crown-pending">未定</div>';
+    return;
+  }
+
+  const withScore = teams.map(t => ({ ...t, _s: toNum(t.score) }));
+  withScore.sort((a,b) => (b._s ?? -Infinity) - (a._s ?? -Infinity));
+
+  finalEl.innerHTML = `
+    <table>
+      <thead><tr><th></th><th>団体名</th><th class="pt">得点</th></tr></thead>
+      <tbody>
+        ${withScore.map((t,i) => `
+          <tr class="${i===0 ? 'rank-1' : ''}">
+            <td class="num">${i+1}</td>
+            <td>${escapeHtml(t.number)} ${escapeHtml(t.name)}</td>
+            <td class="pt">${pt(t._s)}</td>
+          </tr>`).join('')}
+      </tbody>
+    </table>`;
+
+  const hasAllScores = withScore.every(t => t._s !== null);
+  if (hasAllScores){
+    const champ = withScore[0];
+    champEl.innerHTML = `
+      <div class="crown-number">${escapeHtml(champ.number)}</div>
+      <div class="crown-name">${escapeHtml(champ.name)}</div>`;
+  } else {
+    champEl.innerHTML = '<div class="crown-pending">決勝戦の結果待ち</div>';
+  }
+}
+
+async function load(){
+  GROUP_LETTERS.forEach(l => {
+    document.getElementById('group-' + l).innerHTML = '<div class="state">読み込み中…</div>';
+  });
+  document.getElementById('final').innerHTML = '<div class="state">読み込み中…</div>';
+
+  try{
+    const [groupsRes, finalRes] = await Promise.all([
+      fetch(GROUPS_CSV + '?t=' + Date.now()),
+      fetch(FINAL_CSV + '?t=' + Date.now())
+    ]);
+    if (!groupsRes.ok) throw new Error('groups.csv が見つかりません');
+    const groupsText = await groupsRes.text();
+    const allTeams = parseCSV(groupsText);
+
+    GROUP_LETTERS.forEach(letter => {
+      const teams = allTeams.filter(t => (t.group || '').toUpperCase() === letter);
+      renderGroup(letter, teams);
+    });
+
+    let finalTeams = [];
+    if (finalRes.ok){
+      const finalText = await finalRes.text();
+      finalTeams = parseCSV(finalText);
+    }
+    renderFinal(finalTeams);
+
+    document.getElementById('updated').textContent = '最終更新: ' + new Date().toLocaleString('ja-JP');
+  } catch(err){
+    document.getElementById('bracket').innerHTML =
+      `<div class="state error">読み込みエラー: ${escapeHtml(err.message)}</div>`;
+  }
+}
+
+load();
+</script>
+
+</body>
+</html>
