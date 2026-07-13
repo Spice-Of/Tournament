@@ -140,6 +140,7 @@
   .num{ color:var(--paper-dim); font-variant-numeric:tabular-nums; width:26px; }
   .pt{ text-align:right; font-variant-numeric:tabular-nums; }
   .pending{ color:var(--paper-dim); }
+  .pending-slot{ color:var(--paper-dim); font-style: italic; font-size: 11.5px; }
 
   .mini-card{ background:var(--panel-2); border:1px solid var(--line); border-radius:2px; padding:8px 8px 4px; }
   .mini-card .mini-title{ font-size:10px; color:var(--lamp-dim); letter-spacing:.1em; margin-bottom:4px; }
@@ -288,8 +289,24 @@ function computeGroup(teams){
   const q1Ranked = rank(q1, 'match1_score');
   const q2Ranked = rank(q2, 'match1_score');
 
-  const upperBlock = [...q1Ranked.slice(0,2), ...q2Ranked.slice(0,2)];
-  const lowerBlock = [...q1Ranked.slice(2,4), ...q2Ranked.slice(2,4)];
+  // 第1試合(East/West)の得点が全チーム分そろっているか
+  const q1Complete = q1.every(t => toNum(t.match1_score) !== null);
+  const q2Complete = q2.every(t => toNum(t.match1_score) !== null);
+
+  const slot = (team, sourceLabel, sourceRank, complete) => ({ team, sourceLabel, sourceRank, complete });
+
+  const upperSlots = [
+    slot(q1Ranked[0], 'East', 1, q1Complete),
+    slot(q1Ranked[1], 'East', 2, q1Complete),
+    slot(q2Ranked[0], 'West', 1, q2Complete),
+    slot(q2Ranked[1], 'West', 2, q2Complete),
+  ];
+  const lowerSlots = [
+    slot(q1Ranked[2], 'East', 3, q1Complete),
+    slot(q1Ranked[3], 'East', 4, q1Complete),
+    slot(q2Ranked[2], 'West', 3, q2Complete),
+    slot(q2Ranked[3], 'West', 4, q2Complete),
+  ];
 
   const withTotal = teams.map(t => {
     const m1 = toNum(t.match1_score);
@@ -298,7 +315,35 @@ function computeGroup(teams){
   });
   withTotal.sort((a,b) => (b._total ?? -Infinity) - (a._total ?? -Infinity));
 
-  return { q1: q1Ranked, q2: q2Ranked, upperBlock, lowerBlock, overall: withTotal };
+  return { q1: q1Ranked, q2: q2Ranked, upperSlots, lowerSlots, overall: withTotal };
+}
+
+/* ---- render a 第2試合 block: shows the real team once its source quartet is decided,
+   otherwise a placeholder like "A-Westの1位" ---- */
+function slotTable(slots, scoreKey, groupLetter){
+  const allKnown = slots.every(s => s.complete);
+  const ordered = allKnown
+    ? [...slots].sort((a,b) => (toNum(b.team[scoreKey]) ?? -Infinity) - (toNum(a.team[scoreKey]) ?? -Infinity))
+    : slots;
+
+  const rows = ordered.map((s,i) => {
+    if (!s.complete){
+      return `
+      <tr>
+        <td class="num">-</td>
+        <td class="pending-slot">${groupLetter}-${s.sourceLabel}の${s.sourceRank}位</td>
+        <td class="pt pending">-</td>
+      </tr>`;
+    }
+    return `
+    <tr>
+      <td class="num">${i+1}</td>
+      <td>${groupLetter}-${escapeHtml(s.team.number)}</td>
+      <td class="pt">${pt(toNum(s.team[scoreKey]))}</td>
+    </tr>`;
+  }).join('');
+
+  return `<table><tbody>${rows}</tbody></table>`;
 }
 
 function renderGroup(letter, teams){
@@ -354,8 +399,8 @@ function renderGroup(letter, teams){
 
         <div class="section-label">第2試合</div>
         <div class="match-pair">
-          <div class="mini-card"><div class="mini-title">${letter}-East</div>${matchTable(g.upperBlock, 'match2_score', letter)}</div>
-          <div class="mini-card"><div class="mini-title">${letter}-West</div>${matchTable(g.lowerBlock, 'match2_score', letter)}</div>
+          <div class="mini-card"><div class="mini-title">${letter}-East</div>${slotTable(g.upperSlots, 'match2_score', letter)}</div>
+          <div class="mini-card"><div class="mini-title">${letter}-West</div>${slotTable(g.lowerSlots, 'match2_score', letter)}</div>
         </div>
       </div>
     </div>
