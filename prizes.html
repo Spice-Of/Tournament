@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>賞品紹介 — Spice Of Tournament 二〇二六</title>
+<title>賞品紹介 — Spice Of Tournament 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -77,24 +77,10 @@ main{max-width:900px;margin:0 auto;padding:4rem 2rem 6rem;}
 
 footer{border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;font-family:'Noto Sans JP',sans-serif;}
 .footer-curse{margin-top:1.2rem;color:#3a1010;font-size:0.6rem;letter-spacing:0.08em;}
-
-/* ── SIDE IMAGES (PC only) ── */
-.side-image{position:fixed;top:0;height:100vh;width:calc((100vw - 900px) / 2);max-width:260px;z-index:10;pointer-events:none;display:flex;align-items:center;justify-content:center;opacity:0.9;}
-.side-image.left{left:0;}
-.side-image.right{right:0;}
-.side-image img{max-width:90%;max-height:90vh;object-fit:contain;}
-@media (max-width:1180px){.side-image{display:none;}}
 @media(max-width:480px){nav{gap:1rem;font-size:0.65rem;}}
 </style>
 </head>
 <body>
-
-<div class="side-image left">
-  <img src="images/side-left.png" alt="" onerror="this.parentElement.style.display='none'">
-</div>
-<div class="side-image right">
-  <img src="images/side-right.png" alt="" onerror="this.parentElement.style.display='none'">
-</div>
 <script>
 for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m.style.left=Math.random()*100+'vw';const s=(2+Math.random()*3)+'px';m.style.width=s;m.style.height=s;m.style.animationDuration=(10+Math.random()*14)+'s';m.style.animationDelay=(Math.random()*12)+'s';document.body.appendChild(m);}
 </script>
@@ -103,7 +89,7 @@ for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m
   <a href="index.html" class="nav-home">🔦 Spice Of Tournament</a>
   <a href="prizes.html" class="active">賞品紹介</a>
   <a href="participants.html">参加団体</a>
-  <a href="sale.html">連動セール</a>
+  <a href="sale.html">スパセール</a>
   <a href="news.html">関連情報</a>
 </nav>
 
@@ -151,13 +137,13 @@ for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m
   <!-- 部門賞 -->
   <div class="tier">
     <p class="section-eyebrow">Special Awards</p>
-    <h2 class="section-title">部門賞</h2>
+    <h2 class="section-title">入賞</h2>
     <div class="section-rule"></div>
-    <p class="section-note">※ 部門名・賞品・条件は仮の情報です。実際の内容に書き換えてご使用ください。</p>
-    <div class="special-grid">
+    <p class="section-note">予選にて３位以上の団体が抽選できます。</p>
+    <!-- <div class="special-grid">
 
       <div class="special-card">
-        <p class="special-award-name">💡 ベストプレイ賞</p>
+        <p class="special-award-name">💡 賞</p>
         <p class="special-prize">賞品名④</p>
         <p class="special-desc">選出条件をここに記載してください。</p>
       </div>
@@ -180,11 +166,11 @@ for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m
         <p class="special-desc">選出条件をここに記載してください。</p>
       </div>
 
-    </div>
+    </div>-->
   </div>
 
   <!-- 参加賞 -->
-  <div class="tier" style="margin-bottom:0;">
+  <!-- <div class="tier" style="margin-bottom:0;">
     <p class="section-eyebrow">For Everyone</p>
     <h2 class="section-title">参加賞</h2>
     <div class="section-rule"></div>
@@ -195,12 +181,12 @@ for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m
         暗闇を最後まで歩き切った証を、ぜひ手にとってください。
       </p>
     </div>
-  </div>
+  </div>-->
 
 </main>
 
 <footer>
-  &copy; 二〇二六　Spice Of Tournament　All Rights Reserved
+  &copy; 2026　Spice Of Tournament　All Rights Reserved
   <div class="footer-curse">─ 灯りを失った者の記録は、ここには残らない ─</div>
 </footer>
 </body>

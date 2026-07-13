@@ -165,10 +165,17 @@ nav .nav-home{color:var(--text);margin-right:auto;}
   margin:2rem auto;
 }
 .hero-date{
-  font-size:clamp(0.9rem,2.5vw,1.15rem);
+  font-size:clamp(1.1rem,3.5vw,1.6rem);
   color:var(--muted);letter-spacing:0.25em;
+  margin-top:0.5rem;
 }
-.hero-date span{color:var(--lamp-bright);}
+.hero-date span{
+  color:var(--lamp-bright);
+  font-weight:700;
+  font-size:1.15em;
+  margin-left:0.3em;
+  animation:lampGlow 4.5s ease-in-out infinite;
+}
 .hero-cta{
   margin-top:3rem;display:inline-block;
   padding:1rem 3rem;
@@ -255,9 +262,9 @@ section{padding:5rem 2rem;max-width:900px;margin:0 auto;}
   display:grid;grid-template-columns:5rem 1fr;gap:1.5rem;
   padding:1.5rem 0;border-bottom:1px solid var(--border);align-items:start;
 }
-.schedule-time{font-size:0.9rem;color:var(--lamp-bright);padding-top:0.1rem;letter-spacing:0.05em;}
+.schedule-time{font-size:1rem;font-weight:500;color:var(--muted);padding-top:0.1rem;letter-spacing:0.05em;}
 .schedule-name{font-weight:700;margin-bottom:0.3rem;letter-spacing:0.05em;}
-.schedule-desc{font-size:0.8rem;color:var(--muted);font-family:'Noto Sans JP',sans-serif;}
+.schedule-desc{font-size:1rem;font-weight:700;color:var(--lamp-bright);font-family:'Noto Sans JP',sans-serif;letter-spacing:0.05em;}
 
 /* prizes preview grid */
 .prize-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:2rem;}
@@ -332,31 +339,6 @@ footer{
 }
 .footer-curse{margin-top:1.2rem;color:#3a2a10;font-size:0.6rem;letter-spacing:0.08em;}
 
-/* ── SIDE IMAGES (PC only) ── */
-.side-image{
-  position:fixed;
-  top:0;
-  height:100vh;
-  width:calc((100vw - 900px) / 2);
-  max-width:260px;
-  z-index:10;
-  pointer-events:none;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  opacity:0.9;
-}
-.side-image.left{left:0;}
-.side-image.right{right:0;}
-.side-image img{
-  max-width:90%;
-  max-height:90vh;
-  object-fit:contain;
-}
-@media (max-width:1180px){
-  .side-image{display:none;}
-}
-
 @media (max-width:480px){
   .schedule-item{grid-template-columns:1fr;gap:0.3rem;}
   nav{gap:1rem;font-size:0.65rem;}
@@ -365,13 +347,6 @@ footer{
 </style>
 </head>
 <body>
-
-<div class="side-image left">
-  <img src="images/side-left.png" alt="" onerror="this.parentElement.style.display='none'">
-</div>
-<div class="side-image right">
-  <img src="images/side-right.png" alt="" onerror="this.parentElement.style.display='none'">
-</div>
 
 <script>
 for(let i=0;i<14;i++){
@@ -390,7 +365,7 @@ for(let i=0;i<14;i++){
   <a href="index.html" class="nav-home active">🔦 Spice Of Tournament</a>
   <a href="prizes.html">賞品紹介</a>
   <a href="participants.html">参加団体</a>
-  <a href="sale.html">連動セール</a>
+  <a href="sale.html">スパセール</a>
   <a href="news.html">関連情報</a>
 </nav>
 
@@ -403,7 +378,7 @@ for(let i=0;i<14;i++){
   <h1 class="hero-title">Spice Of<span class="accent">Tournament</span></h1>
   <div class="hero-divider"></div>
   <p class="hero-date">開催日時　<span>2026.7.31 〜 8.2</span></p>
-  <a href="https://docs.google.com/forms/d/1V5BqykIUGrsTMFu7nC82a4GMfIEssilP_Lk3-3X3Jo0/viewform?edit_requested=true" class="hero-cta">今すぐ参加登録</a>
+  <a href="https://x.com/SpiceOfVRinks" class="hero-cta">最新情報をチェック</a>
 </section>
 
 <!-- COUNTDOWN -->
@@ -423,12 +398,13 @@ for(let i=0;i<14;i++){
 <!-- ABOUT -->
 <section id="about">
   <p class="section-eyebrow">About</p>
-  <h2 class="section-title">VRC最大級のイベント団体交流大会</h2>
+  <h2 class="section-title">VRChatでのイベント団体交流大会</h2>
   <div class="section-rule"></div>
   <p class="about-body">
     Spice Of Tournamentとは、<br>
     SpiceOfVRinks（通称：スパぶい） が主催するゲーム大会。<br>
-    イベント団体から代表者が出場し、団体トーナメント形式で開催。<br>
+    VRChatで活動するイベント団体から代表者が出場し、<br>
+    団体戦トーナメント形式で開催されます。<br>
     今回は株式会社バーチャルパーティー様の協力のもと、<br>
     新作VRボードゲーム「迷子VR」を使用した大会を開催します。<br>
   </p>
@@ -464,7 +440,7 @@ for(let i=0;i<14;i++){
   <h2 class="section-title">告知ポスター</h2>
   <div class="section-rule"></div>
   <div style="width:100%;max-width:500px;margin:0 auto;aspect-ratio:1/1.414;background:var(--paper);border:1px dashed rgba(204,34,34,0.3);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.7rem;letter-spacing:0.1em;overflow:hidden;">
-    <img src="images/poster.jpg" alt="告知ポスター" style="width:100%;height:100%;object-fit:contain;display:none;" onload="this.style.display='block';this.parentElement.style.border='none';this.parentElement.style.background='none';" onerror="this.style.display='none';">
+    <img src="Image/poster.png" alt="告知ポスター" style="width:100%;height:100%;object-fit:contain;display:none;" onload="this.style.display='block';this.parentElement.style.border='none';this.parentElement.style.background='none';" onerror="this.style.display='none';">
     POSTER
   </div>
 </section>
@@ -492,15 +468,15 @@ for(let i=0;i<14;i++){
   <div class="section-rule"></div>
   <ul class="schedule-list">
     <li class="schedule-item">
-      <span class="schedule-time">Day 1<br><small style="font-size:0.7rem;color:var(--muted);">7/31 金</small></span>
+      <span class="schedule-time">Day 1<br><small style="font-size:1.3rem;font-weight:900;color:var(--lamp-bright);text-shadow:0 0 14px rgba(255,68,68,0.5);">7/31 金</small></span>
       <div><p class="schedule-name">予選一日目</p><p class="schedule-desc">22:00 〜 24:00（2時間）</p></div>
     </li>
     <li class="schedule-item">
-      <span class="schedule-time">Day 2<br><small style="font-size:0.7rem;color:var(--muted);">8/1 土</small></span>
+      <span class="schedule-time">Day 2<br><small style="font-size:1.3rem;font-weight:900;color:var(--lamp-bright);text-shadow:0 0 14px rgba(255,68,68,0.5);">8/1 土</small></span>
       <div><p class="schedule-name">予選二日目</p><p class="schedule-desc">22:00 〜 24:00（2時間）</p></div>
     </li>
     <li class="schedule-item">
-      <span class="schedule-time">Day 3<br><small style="font-size:0.7rem;color:var(--muted);">8/2 日</small></span>
+      <span class="schedule-time">Day 3<br><small style="font-size:1.3rem;font-weight:900;color:var(--lamp-bright);text-shadow:0 0 14px rgba(255,68,68,0.5);">8/2 日</small></span>
       <div><p class="schedule-name">決勝戦</p><p class="schedule-desc">21:00 〜 23:00（2時間）</p></div>
     </li>
   </ul>
@@ -519,13 +495,13 @@ for(let i=0;i<14;i++){
     </div>
     <div class="prize-card">
       <p class="prize-rank">PRIZE 02</p>
-      <p class="prize-name">各種アバター</p>
-      <p class="prize-desc">応援協力団体から提供のアバター</p>
+      <p class="prize-name">アバター・衣装・アイテム</p>
+      <p class="prize-desc">応援協力団体から提供の商品</p>
     </div>
     <div class="prize-card">
       <p class="prize-rank">PRIZE 03</p>
-      <p class="prize-name">衣装・アイテム</p>
-      <p class="prize-desc">応援協力団体から提供の衣装やアイテム
+      <p class="prize-name">イベントチケット</p>
+      <p class="prize-desc">応援協力団体のイベントの豪華チケット
       </p>
     </div>
   </div>
@@ -541,37 +517,37 @@ for(let i=0;i<14;i++){
   <div class="section-rule"></div>
   <p class="preview-text">この大会を盛り上げてくださる、8名のアンバサダーをご紹介します。</p>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1.2rem;">
-    <a href="#" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
-      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;">PHOTO</div>
-      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー①</p>
+    <a href="https://x.com/TakakoMM2019" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;"><img src="Image/ambassador1.png" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;"></div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">真園萬子</p>
     </a>
-    <a href="#" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
-      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;">PHOTO</div>
-      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー②</p>
+    <a href="https://x.com/NoControl1999" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;"><img src="Image/ambassador2.png" style="width:100%;height:100%;object-fit:cover;object-position:center 25%;"></div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">いななほ</p>
     </a>
-    <a href="#" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
-      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;">PHOTO</div>
-      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー③</p>
+    <a href="https://x.com/_Yuuki_k_" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;"><img src="Image/ambassador3.png" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;"></div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">神威ユウキ</p>
     </a>
-    <a href="#" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
-      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;">PHOTO</div>
-      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー④</p>
+    <a href="https://x.com/Sasugo_3" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;"><img src="Image/ambassador4.png" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;"></div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">Sasugo</p>
     </a>
-    <a href="#" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
-      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;">PHOTO</div>
-      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー⑤</p>
+    <a href="https://x.com/dahukokko_H" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;"><img src="Image/ambassador5.png" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;"></div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">ちーぬちゃん</p>
     </a>
-    <a href="#" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
-      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;">PHOTO</div>
-      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー⑥</p>
+    <a href="https://x.com/HiyoPiyo_VRC" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;"><img src="Image/ambassador6.png" style="width:100%;height:100%;object-fit:cover;object-position:center 25%;"></div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">ひよこぴよぴよ</p>
     </a>
-    <a href="#" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
-      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;">PHOTO</div>
-      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー⑦</p>
+    <a href="https://x.com/MarySweetDream" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;"><img src="Image/ambassador7.png" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;"></div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">メアリ</p>
     </a>
-    <a href="#" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
-      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;">PHOTO</div>
-      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">アンバサダー⑧</p>
+    <a href="https://x.com/matsu_rina_0811" target="_blank" rel="noopener" class="ambassador-link" style="text-align:center;text-decoration:none;display:block;">
+      <div style="width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.7rem;border-radius:50%;overflow:hidden;transition:border-color 0.2s;"><img src="Image/ambassador8.png" style="width:100%;height:100%;object-fit:cover;object-position:center 0%;"></div>
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--text);letter-spacing:0.05em;">松本莉奈</p>
     </a>
   </div>
 </section>
@@ -583,39 +559,39 @@ for(let i=0;i<14;i++){
   <div class="section-rule"></div>
   <div class="sponsor-tile-grid">
     <a href="https://virtualparty.jp/" target="_blank" rel="noopener" class="sponsor-tile">株式会社バーチャルパーティー</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">アンドエスティメタバース</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">NUNUPC</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">VR怪談ライブ Hauntopia</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ゆるゲMEET</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">イベント応援団体『EVENesT』</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ＶＲＣキャストリンク</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">異界商店</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">カロン工房</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ナマズ工廠</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">猫又製作所</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">Rest</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">fatdesign</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ゆきつねのお宿</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">二階建て倉庫</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">Through the Looking-Glass</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">下忍ヒビキの隠れ里</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">妖具屋零れ桜</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ゆめうつつクローゼット</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">MONUMENTS.もにゅめんつ</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">NekoNoNaguriai</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">Isp Tec Company</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">Spices</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">昭和メトロ</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ショップみしま</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">茶屋はるどりのおみやげ屋</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ゆめゆめめ</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">すもももももももものうち</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">蜻蛉堂</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">木炭商店</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ぬまぼ屋さん</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">おもちやさん</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">ややの３D屋</a>
-    <a href="#" target="_blank" rel="noopener" class="sponsor-tile">仮想空間装飾品店NeRosa</a>
+    <a href="https://x.com/andst_metaverse" target="_blank" rel="noopener" class="sponsor-tile">アンドエスティメタバース</a>
+    <a href="https://x.com/NuNuPC_JP" target="_blank" rel="noopener" class="sponsor-tile">NUNUPC</a>
+    <a href="https://x.com/HauntopiaVR" target="_blank" rel="noopener" class="sponsor-tile">VR怪談ライブ Hauntopia</a>
+    <a href="https://x.com/kokuten_t" target="_blank" rel="noopener" class="sponsor-tile">ゆるゲMEET</a>
+    <a href="https://x.com/VRC_evenest" target="_blank" rel="noopener" class="sponsor-tile">イベント応援団体『EVENesT』</a>
+    <a href="https://x.com/VRC_CastLink" target="_blank" rel="noopener" class="sponsor-tile">ＶＲＣキャストリンク</a>
+    <a href="https://x.com/u3yuuki" target="_blank" rel="noopener" class="sponsor-tile">異界商店</a>
+    <a href="https://x.com/Hekecon44gou" target="_blank" rel="noopener" class="sponsor-tile">カロン工房</a>
+    <a href="https://x.com/CmdrZaku" target="_blank" rel="noopener" class="sponsor-tile">ナマズ工廠</a>
+    <a href="https://x.com/xs59328096" target="_blank" rel="noopener" class="sponsor-tile">猫又製作所</a>
+    <a href="https://x.com/homurano" target="_blank" rel="noopener" class="sponsor-tile">Rest</a>
+    <a href="https://x.com/fatdesign" target="_blank" rel="noopener" class="sponsor-tile">fatdesign</a>
+    <a href="https://x.com/yukitsune_vrc" target="_blank" rel="noopener" class="sponsor-tile">ゆきつねのお宿</a>
+    <a href="https://x.com/Sgz_GmGd" target="_blank" rel="noopener" class="sponsor-tile">二階建て倉庫</a>
+    <a href="https://x.com/Alice_723_vrc" target="_blank" rel="noopener" class="sponsor-tile">Through the Looking-Glass</a>
+    <a href="https://x.com/hibiki_11111" target="_blank" rel="noopener" class="sponsor-tile">下忍ヒビキの隠れ里</a>
+    <a href="https://x.com/SakurameYuki" target="_blank" rel="noopener" class="sponsor-tile">妖具屋零れ桜</a>
+    <a href="https://x.com/Re_yumeutsutsu" target="_blank" rel="noopener" class="sponsor-tile">ゆめうつつクローゼット</a>
+    <a href="https://x.com/monymony_CG" target="_blank" rel="noopener" class="sponsor-tile">MONUMENTS.もにゅめんつ</a>
+    <a href="https://x.com/nekononaguriai" target="_blank" rel="noopener" class="sponsor-tile">NekoNoNaguriai</a>
+    <a href="https://x.com/GasMusk_Force" target="_blank" rel="noopener" class="sponsor-tile">Isp Tec Company</a>
+    <a href="https://x.com/MeidiPega7748" target="_blank" rel="noopener" class="sponsor-tile">Spices</a>
+    <a href="https://x.com/tousei" target="_blank" rel="noopener" class="sponsor-tile">昭和メトロ</a>
+    <a href="https://x.com/shop_mishima" target="_blank" rel="noopener" class="sponsor-tile">ショップみしま</a>
+    <a href="https://x.com/harudori_uguisu" target="_blank" rel="noopener" class="sponsor-tile">茶屋はるどりのおみやげ屋</a>
+    <a href="https://x.com/yume0me" target="_blank" rel="noopener" class="sponsor-tile">ゆめゆめめ</a>
+    <a href="https://nimpwq.booth.pm/" target="_blank" rel="noopener" class="sponsor-tile">すもももももももものうち</a>
+    <a href="https://x.com/TonbodouSuisei" target="_blank" rel="noopener" class="sponsor-tile">蜻蛉堂</a>
+    <a href="https://x.com/yoogurrupe" target="_blank" rel="noopener" class="sponsor-tile">木炭商店</a>
+    <a href="https://x.com/numable310" target="_blank" rel="noopener" class="sponsor-tile">ぬまぼ屋さん</a>
+    <a href="https://x.com/Omochiya3" target="_blank" rel="noopener" class="sponsor-tile">おもちやさん</a>
+    <a href="https://x.com/SigYaya" target="_blank" rel="noopener" class="sponsor-tile">ややの３D屋</a>
+    <a href="https://x.com/NeRosaVRC" target="_blank" rel="noopener" class="sponsor-tile">仮想空間装飾品店NeRosa</a>
   </div>
   <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.7rem;color:var(--muted);text-align:right;margin-top:1rem;">(順不同,敬称略)</p>
 </section>
@@ -698,10 +674,10 @@ for(let i=0;i<14;i++){
 <!-- REGISTER -->
 <div class="register-wrap" id="register">
   <p class="section-eyebrow">Entry</p>
-  <h2 class="section-title">参加の申し込み</h2>
+  <h2 class="section-title">Grupeに参加する</h2>
   <div class="section-rule" style="margin:0.5rem auto 2rem;"></div>
-  <p class="register-body">7/11締切募集です<br>定員を超えた場合は抽選になります</p>
-  <a href="https://docs.google.com/forms/d/1V5BqykIUGrsTMFu7nC82a4GMfIEssilP_Lk3-3X3Jo0/viewform?edit_requested=true" class="register-btn">今すぐ参加登録</a>
+  <p class="register-body">SpiceOfTournamentは、SpiceOfVRinksのVRChat内Grupeで開催されます！</p>
+  <a href="https://vrc.group/SSC.6137" class="register-btn">今すぐGrupeに参加</a>
 </div>
 
 <!-- ORGANIZER -->
