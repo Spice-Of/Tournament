@@ -114,6 +114,18 @@
     margin: 14px 0 8px; text-transform:uppercase;
   }
 
+  .group-body{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .group-body-left .section-label{ margin-top: 0; }
+
+  @media (max-width: 640px){
+    .group-body{ grid-template-columns: 1fr; }
+  }
+
   .match-pair{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 
   table{ width:100%; border-collapse:collapse; font-size:12.5px; }
@@ -289,23 +301,29 @@ function renderGroup(letter, teams){
   el.innerHTML = `
     <h2><span class="g-eyebrow">GROUP</span>${letter}グループ</h2>
 
-    <div class="section-label">第1試合</div>
-    <div class="match-pair">
-      <div class="mini-card"><div class="mini-title">${letter}-East</div>${matchTable(g.q1, 'match1_score', letter)}</div>
-      <div class="mini-card"><div class="mini-title">${letter}-West</div>${matchTable(g.q2, 'match1_score', letter)}</div>
-    </div>
+    <div class="group-body">
+      <div class="group-body-left">
+        <div class="section-label">合計順位</div>
+        <table class="total-table">
+          <thead><tr><th></th><th>団体名</th><th class="pt">1試合目</th><th class="pt">2試合目</th><th class="pt">合計</th></tr></thead>
+          <tbody>${overallRows}</tbody>
+        </table>
+      </div>
 
-    <div class="section-label">第2試合</div>
-    <div class="match-pair">
-      <div class="mini-card"><div class="mini-title">${letter}-East</div>${matchTable(g.upperBlock, 'match2_score', letter)}</div>
-      <div class="mini-card"><div class="mini-title">${letter}-West</div>${matchTable(g.lowerBlock, 'match2_score', letter)}</div>
-    </div>
+      <div class="group-body-right">
+        <div class="section-label">第1試合</div>
+        <div class="match-pair">
+          <div class="mini-card"><div class="mini-title">${letter}-East</div>${matchTable(g.q1, 'match1_score', letter)}</div>
+          <div class="mini-card"><div class="mini-title">${letter}-West</div>${matchTable(g.q2, 'match1_score', letter)}</div>
+        </div>
 
-    <div class="section-label">合計順位</div>
-    <table class="total-table">
-      <thead><tr><th></th><th>団体名</th><th class="pt">1試合目</th><th class="pt">2試合目</th><th class="pt">合計</th></tr></thead>
-      <tbody>${overallRows}</tbody>
-    </table>
+        <div class="section-label">第2試合</div>
+        <div class="match-pair">
+          <div class="mini-card"><div class="mini-title">${letter}-East</div>${matchTable(g.upperBlock, 'match2_score', letter)}</div>
+          <div class="mini-card"><div class="mini-title">${letter}-West</div>${matchTable(g.lowerBlock, 'match2_score', letter)}</div>
+        </div>
+      </div>
+    </div>
   `;
 }
 
