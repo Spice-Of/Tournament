@@ -190,17 +190,25 @@
   .updated{ text-align:center; margin-top:32px; font-size:11px; color:var(--paper-dim); letter-spacing:.05em; }
 
 /* SIDE IMAGES (PC only) */
-.side-image{position:fixed;top:0;height:100vh;width:calc((100vw - 1200px) / 2);max-width:600px;z-index:10;pointer-events:none;display:flex;align-items:center;justify-content:center;opacity:0.9;}
-.side-image.left{left: 50px;}
-.side-image.right{right: 50px;}
-.side-image img{max-width:90%;max-height:90vh;object-fit:contain;}
-@media (max-width:1480px){.side-image{display:none;}}
+
+nav{position:fixed;top:0;left:0;right:0;padding:1rem 2rem;display:flex;align-items:center;gap:2rem;background:rgba(10,9,8,0.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:100;font-family:sans-serif;font-size:0.75rem;letter-spacing:0.15em;}
+nav a{color:var(--paper-dim);text-decoration:none;transition:color 0.2s;}
+nav a:hover,nav a.active{color:var(--lamp);}
+nav .nav-home{color:var(--paper);margin-right:auto;}
+body{padding-top:60px;}
+@media(max-width:480px){nav{gap:1rem;font-size:0.65rem;}}
 </style>
 </head>
 <body>
 
-<div class="side-image left"><img src="Image/side-left.png" alt="" onerror="this.parentElement.style.display='none'"></div>
-<div class="side-image right"><img src="Image/side-right.png" alt="" onerror="this.parentElement.style.display='none'"></div>
+<nav>
+  <a href="index.html" class="nav-home">🔦 Spice Of Tournament</a>
+  <a href="prizes.html">賞品紹介</a>
+  <a href="participants.html">参加団体</a>
+  <a href="bracket.html" class="active">トーナメント表</a>
+  <a href="sale.html">スパセール</a>
+  <a href="news.html">関連情報</a>
+</nav>
 <div class="flicker-wrap">
 
 
