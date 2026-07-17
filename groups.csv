@@ -1,33 +1,33 @@
-﻿group,number,name,match1_score,match2_score
-A,1,迷子の灯,18,22
-A,2,提灯屋,25,30
-A,3,影踏み師,14,6
-A,4,夜行バス,9,3
-A,5,黒猫亭,20,28
-A,6,連子窓,17,26
-A,7,古井戸組,11,15
-A,8,人形浄瑠璃,8,7
-B,1,紙提灯,16,
-B,2,赤い糸,22,4
-B,3,葬列,28,12
-B,4,蝋燭堂,10,
-B,5,影絵座,19,8
-B,6,夜語り,24,5
-B,7,鈴の音,13,
-B,8,黒井戸,7,
-C,1,雨傘屋,21,
-C,2,狐火,15,
-C,3,井戸端,26,
-C,4,夜船,12,
-C,5,影法師,,
-C,6,梟堂,,
-C,7,朧月,,
-C,8,鬼灯,,
-D,1,百鬼夜行,,
-D,2,提灯行列,,
-D,3,影踏み,,
-D,4,夜叉堂,,
-D,5,鴉組,,
-D,6,古傘屋,,
-D,7,人魂堂,,
-D,8,幽玄座,,
+group,number,name,match1_score,match2_score,member1,member2,member3,image
+A,1,SAKURA MOONLIGHT,,,ToMo.,Cosmos,T_SAY,Image/team-a1.png
+A,2,無限会社 幻会興業,,,kamelra,439ra-yozakura,The Gold,Image/team-a2.png
+A,3,限界人外村,,,チタヌス,おぺらむ_maru,-Noiré-,Image/team-a3.png
+A,4,チーム篝火,,,ほくと,骨付き肉,犬好アトム,Image/team-a4.png
+A,5,SEISO NO OWARI,,,-でるふ-,ななつ,わたきち,Image/team-a5.png
+A,6,It’s MyGO!!!!!,,,ひよこぴよぴよ,神威ユウキ,ちーぬちゃん,Image/team-a6.png
+A,7,旅館 ‐撫でし子‐,,,アズ,むぎ,りゅう,Image/team-a7.png
+A,8,ホラーワールド調査隊,,,,,,Image/team-a8.png
+B,1,バメッサ喫茶〜Andante〜,,,,,,Image/team-b1.png
+B,2,静岡ケンミン集会,,,ひなぽお,チーク_JP,おその106,Image/team-b2.png
+B,3,悪役結社ヴァリアール,,,プレイボーン,造音シーエΛ,ウサガエルス,Image/team-b3.png
+B,4,イマーシブクラウド,,,望月びん,ぎずも・パンッ,めちゃめちゃしらす,Image/team-b4.png
+B,5,人外系でなんかやってる人たち,,,冬生（Tousei）,KAGEN_SAN,Cafe Barista4,Image/team-b5.png
+B,6,メガネアバターを広める会,,,想夏,しゃりこw,かたかな,Image/team-b6.png
+B,7,clubONEchance,,,Siyuri-しゆり,栗花落理,あぢゃむ,Image/team-b7.png
+B,8,方瀬高校 放課後卓上遊戯倶楽部,,,なみどめ,パインサラダ,ささかまぼこ,Image/team-b8.png
+C,1,ゆるゲMEET,,,heyhey_t,わざき（wazakkyd）,あらぁしお_3297,Image/team-c1.png
+C,2,雅縁寝子座,,,雅にゃこ,Lu-nyan,Ruki,Image/team-c2.png
+C,3,絵本の平行世界,,,DECO,kurokikori,machaponn,Image/team-c3.png
+C,4,VRCお笑い道場,,,audaman,笹喰い,エージェントSATAN,Image/team-c4.png
+C,5,VRChat関西部,,,きょん,紅月,dokuren,Image/team-c5.png
+C,6,VRC初心者ワールドツアー,,,アロス,みら・りーぶら,ボルカノ,Image/team-c6.png
+C,7,はじめての迷子,,,,,,Image/team-c7.png
+C,8,アンバサダー愚連隊,,,いななほ,Sasugo,メアリ,Image/team-c8.png
+D,1,劇団コネクトクルー,,,Nobart,フィクスちゃん,S4S4S3,Image/team-d1.png
+D,2,VRCイベント推しえ合おう交流会,,,dairavu,フィリアス・ノンナ,Tanu²_25,Image/team-d2.png
+D,3,Chrono × Chronicle,,,JEIDASU,kaden-Lv777,シエンヘイ,Image/team-d3.png
+D,4,おうちめすがき,,,なのは,双葉むう,ベルアリア,Image/team-d4.png
+D,5,ロリっ子喫茶ぷぷりえ,,,まことポニーテール,YTJVDCM,ひらくぅ。,Image/team-d5.png
+D,6,『OKEANOS GROUP』,,,ひうご。,ネコノヒゲ,kyaname,Image/team-d6.png
+D,7,ＶＲＣキャストリンク,,,ペペ3a,根岸,Alexiel11,Image/team-d7.png
+D,8,VR劇団 纏愚連-TenGuRen-,,,よつば。,ともよろう,珈茶ユヅカ,Image/team-d8.png

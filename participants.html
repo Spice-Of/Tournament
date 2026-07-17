@@ -19,7 +19,8 @@ html{scroll-behavior:smooth;}
 @keyframes lampSway{0%,100%{transform:rotate(-1.5deg);}50%{transform:rotate(1.5deg);}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 
-body{background:var(--bg);color:var(--text);font-family:'Noto Serif JP',serif;overflow-x:hidden;animation:flicker 14s infinite;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Serif JP',serif;overflow-x:hidden;}
+.flicker-wrap{animation:flicker 14s infinite;}
 body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,transparent 40%,rgba(0,0,0,0.5) 100%);pointer-events:none;z-index:9998;}
 .mote{position:fixed;top:0;background:var(--lamp);border-radius:50%;box-shadow:0 0 6px 1px rgba(204,34,34,0.5);opacity:0;pointer-events:none;z-index:9997;animation:drift linear infinite;}
 
@@ -56,6 +57,8 @@ main{max-width:960px;margin:0 auto;padding:4rem 2rem 6rem;}
 .card-members ul{list-style:none;display:flex;flex-direction:column;gap:0.35rem;}
 .card-members ul li{display:flex;align-items:center;gap:0.5rem;color:var(--text);}
 .card-members ul li::before{content:'─';color:var(--lamp);font-size:0.6rem;flex-shrink:0;}
+.card-photo{width:100%;aspect-ratio:16/9;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;letter-spacing:0.1em;margin-bottom:1.2rem;overflow:hidden;}
+.card-photo img{width:100%;height:100%;object-fit:cover;display:block;}
 
 .count-banner{display:flex;align-items:center;justify-content:center;gap:2rem;padding:2rem 2.5rem;background:var(--paper);border:1px solid var(--border);margin-bottom:3rem;flex-wrap:wrap;}
 .count-item{display:flex;flex-direction:column;gap:0.3rem;}
@@ -70,13 +73,6 @@ footer{border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;
 .side-image{position:fixed;top:0;height:100vh;width:calc((100vw - 960px) / 2);max-width:260px;z-index:10;pointer-events:none;display:flex;align-items:center;justify-content:center;opacity:0.9;}
 .side-image.left{left:0;}
 .side-image.right{right:0;}
-.side-image img{max-width:90%;max-height:90vh;object-fit:contain;}
-@media (max-width:1240px){.side-image{display:none;}}
-
-/* SIDE IMAGES (PC only) */
-.side-image{position:fixed;top:0;height:100vh;width:calc((100vw - 960px) / 2);max-width:600px;z-index:10;pointer-events:none;display:flex;align-items:center;justify-content:center;opacity:0.9;}
-.side-image.left{left: 50px;}
-.side-image.right{right: 50px;}
 .side-image img{max-width:90%;max-height:90vh;object-fit:contain;}
 @media (max-width:1240px){.side-image{display:none;}}
 @media(max-width:480px){nav{gap:1rem;font-size:0.65rem;}.count-banner{gap:1rem;}}
@@ -111,60 +107,86 @@ for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m
 </div>
 
 <main>
-  <div class="count-banner">
-    <div class="count-item"><span class="count-num">4</span><span class="count-label">参加団体数</span></div>
+  <div class="count-banner" id="count-banner">
+    <div class="count-item"><span class="count-num" id="count-groups">--</span><span class="count-label">参加団体数</span></div>
     <div class="count-divider"></div>
-    <div class="count-item"><span class="count-num">12</span><span class="count-label">総参加人数</span></div>
+    <div class="count-item"><span class="count-num" id="count-members">--</span><span class="count-label">総参加人数</span></div>
   </div>
 
   <p class="section-eyebrow">Entry List</p>
   <h2 class="section-title">参加団体一覧</h2>
   <div class="section-rule"></div>
-  <p class="section-note">※ 団体名・メンバー数は仮の情報です。実際の情報に書き換えてご使用ください。</p>
+  <p class="section-note">※ groups.csv の内容を読み込んで自動表示しています。編集はCSVファイルのみでOKです。</p>
 
-  <div class="participant-grid">
-    <div class="participant-card">
-      <p class="card-num">No. 001</p>
-      <h3 class="card-name">◯◯クラン</h3>
-      <span class="card-tag">攻撃型</span>
-      <p class="card-desc">ここに団体の紹介文を入れてください。得意な戦術や過去の実績などを記載できます。</p>
-      <div class="card-members">
-        <p class="card-members-label">メンバー（3名）</p>
-        <ul><li>メンバー名①</li><li>メンバー名②</li><li>メンバー名③</li></ul>
-      </div>
-    </div>
-    <div class="participant-card">
-      <p class="card-num">No. 002</p>
-      <h3 class="card-name">△△ギルド</h3>
-      <span class="card-tag">守備型</span>
-      <p class="card-desc">ここに団体の紹介文を入れてください。得意な戦術や過去の実績などを記載できます。</p>
-      <div class="card-members">
-        <p class="card-members-label">メンバー（3名）</p>
-        <ul><li>メンバー名①</li><li>メンバー名②</li><li>メンバー名③</li></ul>
-      </div>
-    </div>
-    <div class="participant-card">
-      <p class="card-num">No. 003</p>
-      <h3 class="card-name">□□連合</h3>
-      <span class="card-tag">バランス型</span>
-      <p class="card-desc">ここに団体の紹介文を入れてください。得意な戦術や過去の実績などを記載できます。</p>
-      <div class="card-members">
-        <p class="card-members-label">メンバー（3名）</p>
-        <ul><li>メンバー名①</li><li>メンバー名②</li><li>メンバー名③</li></ul>
-      </div>
-    </div>
-    <div class="participant-card">
-      <p class="card-num">No. 004</p>
-      <h3 class="card-name">▽▽衆</h3>
-      <span class="card-tag">奇襲型</span>
-      <p class="card-desc">ここに団体の紹介文を入れてください。得意な戦術や過去の実績などを記載できます。</p>
-      <div class="card-members">
-        <p class="card-members-label">メンバー（3名）</p>
-        <ul><li>メンバー名①</li><li>メンバー名②</li><li>メンバー名③</li></ul>
-      </div>
-    </div>
+  <div class="participant-grid" id="participant-grid">
+    <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;color:var(--muted);">読み込み中…</p>
   </div>
 </main>
+
+<script>
+(function(){
+  function parseCSV(text){
+    text = text.replace(/^\uFEFF/, '').trim();
+    const lines = text.split(/\r\n|\n/).filter(l => l.trim().length > 0);
+    const header = lines[0].split(',').map(h => h.trim().toLowerCase());
+    return lines.slice(1).map(line => {
+      const cells = [];
+      let cur = '', inQuotes = false;
+      for (const ch of line){
+        if (ch === '"'){ inQuotes = !inQuotes; continue; }
+        if (ch === ',' && !inQuotes){ cells.push(cur); cur=''; continue; }
+        cur += ch;
+      }
+      cells.push(cur);
+      const row = {};
+      header.forEach((h,i) => row[h] = (cells[i] || '').trim());
+      return row;
+    });
+  }
+
+  function escapeHtml(str){
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  }
+
+  fetch('groups.csv')
+    .then(res => {
+      if(!res.ok) throw new Error('groups.csv が見つかりません');
+      return res.text();
+    })
+    .then(text => {
+      const rows = parseCSV(text).filter(r => r.name);
+      const grid = document.getElementById('participant-grid');
+
+      document.getElementById('count-groups').textContent = rows.length;
+      document.getElementById('count-members').textContent = rows.length * 3;
+
+      grid.innerHTML = rows.map((r, i) => {
+        const num = String(i + 1).padStart(3, '0');
+        const members = [r.member1, r.member2, r.member3].filter(Boolean);
+        const photo = r.image
+          ? `<div class="card-photo"><img src="${escapeHtml(r.image)}" alt="${escapeHtml(r.name)}" onerror="this.parentElement.textContent='PHOTO'"></div>`
+          : `<div class="card-photo">PHOTO</div>`;
+        return `
+        <div class="participant-card">
+          <p class="card-num">No. ${num}　${r.group ? 'Group ' + escapeHtml(r.group) : ''}</p>
+          ${photo}
+          <h3 class="card-name">${escapeHtml(r.name)}</h3>
+          <div class="card-members">
+            <p class="card-members-label">メンバー（${members.length}名）</p>
+            <ul>${members.map(m => `<li>${escapeHtml(m)}</li>`).join('')}</ul>
+          </div>
+        </div>`;
+      }).join('');
+    })
+    .catch(err => {
+      document.getElementById('participant-grid').innerHTML =
+        `<p style="font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;color:var(--muted);">読み込みに失敗しました：${err.message}</p>`;
+    });
+})();
+</script>
+
 
 <footer>
   &copy; 二〇二六　Spice Of Tournament　All Rights Reserved
