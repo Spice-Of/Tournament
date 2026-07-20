@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>賞品紹介 — Spice Of Tournament 二〇二六</title>
+<title>賞品紹介 — Spice Of Tournament 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -59,6 +59,11 @@ main{max-width:900px;margin:0 auto;padding:4rem 2rem 6rem;}
 .rank-card.bronze .rank-label{color:#d08050;}
 .rank-prize{font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:0.6rem;letter-spacing:0.03em;}
 .rank-desc{font-family:'Noto Sans JP',sans-serif;font-size:0.78rem;color:var(--muted);line-height:1.8;}
+.prize-photo{width:100%;aspect-ratio:1;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;letter-spacing:0.1em;margin-bottom:1rem;overflow:hidden;}
+.prize-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.prize-provider{margin-top:0.6rem;font-family:'Noto Sans JP',sans-serif;font-size:0.7rem;color:var(--muted);letter-spacing:0.03em;}
+.prize-provider a{color:var(--lamp);text-decoration:none;border-bottom:1px solid rgba(204,34,34,0.3);}
+.prize-provider a:hover{color:var(--lamp-bright);}
 
 /* ── SPECIAL / BUMON AWARDS ── */
 .special-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;}
@@ -66,6 +71,7 @@ main{max-width:900px;margin:0 auto;padding:4rem 2rem 6rem;}
 .special-card:hover{border-color:var(--lamp-dim);}
 .special-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--lamp-dim);}
 .special-award-name{font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;letter-spacing:0.15em;color:var(--lamp-bright);margin-bottom:0.6rem;}
+.pool-badge{display:inline-block;padding:0.2rem 0.7rem;background:var(--lamp-dim);color:#fff;font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;letter-spacing:0.1em;margin-bottom:0.6rem;}
 .special-prize{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;}
 .special-desc{font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;color:var(--muted);line-height:1.8;}
 
@@ -119,7 +125,7 @@ for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m
   <span class="page-hero-kamon">🔦</span>
   <p class="page-hero-eyebrow">Prizes</p>
   <h1 class="page-hero-title">賞品紹介</h1>
-  <p class="page-hero-sub">暗闇を抜けた者に贈られる、灯りの証</p>
+  <p class="page-hero-sub">応援協力団体様ご提供の豪華賞品を紹介します。</p>
   <div class="hero-divider"></div>
 </div>
 
@@ -130,86 +136,140 @@ for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m
     <p class="section-eyebrow">Ranking Prizes</p>
     <h2 class="section-title">順位賞</h2>
     <div class="section-rule"></div>
-    <div class="rank-grid">
-
-      <div class="rank-card gold">
-        <p class="rank-medal">🥇</p>
-        <p class="rank-label">1st Place</p>
-        <p class="rank-prize">賞品名①</p>
-        <p class="rank-desc">賞品の説明をここに入れてください。</p>
-      </div>
-
-      <div class="rank-card silver">
-        <p class="rank-medal">🥈</p>
-        <p class="rank-label">2nd Place</p>
-        <p class="rank-prize">賞品名②</p>
-        <p class="rank-desc">賞品の説明をここに入れてください。</p>
-      </div>
-
-      <div class="rank-card bronze">
-        <p class="rank-medal">🥉</p>
-        <p class="rank-label">3rd Place</p>
-        <p class="rank-prize">賞品名③</p>
-        <p class="rank-desc">賞品の説明をここに入れてください。</p>
-      </div>
-
+    <p class="section-note">決勝戦にて見事勝利した方へ</p>
+    <div class="rank-grid" id="rank-grid">
+      <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;color:var(--muted);">読み込み中…</p>
     </div>
   </div>
 
-  <!-- 部門賞 -->
+  <!-- 特別賞 -->
   <div class="tier">
     <p class="section-eyebrow">Special Awards</p>
-    <h2 class="section-title">部門賞</h2>
+    <h2 class="section-title">特別賞</h2>
     <div class="section-rule"></div>
-    <p class="section-note">※ 部門名・賞品・条件は仮の情報です。実際の内容に書き換えてご使用ください。</p>
-    <div class="special-grid">
-
-      <div class="special-card">
-        <p class="special-award-name">💡 ベストプレイ賞</p>
-        <p class="special-prize">賞品名④</p>
-        <p class="special-desc">選出条件をここに記載してください。</p>
-      </div>
-
-      <div class="special-card">
-        <p class="special-award-name">👥 ベストチームワーク賞</p>
-        <p class="special-prize">賞品名⑤</p>
-        <p class="special-desc">選出条件をここに記載してください。</p>
-      </div>
-
-      <div class="special-card">
-        <p class="special-award-name">🔦 敢闘賞</p>
-        <p class="special-prize">賞品名⑥</p>
-        <p class="special-desc">選出条件をここに記載してください。</p>
-      </div>
-
-      <div class="special-card">
-        <p class="special-award-name">🎨 ベストビジュアル賞</p>
-        <p class="special-prize">賞品名⑦</p>
-        <p class="special-desc">選出条件をここに記載してください。</p>
-      </div>
-
-    </div>
+    <p class="section-note">特別な条件を満たした全てのチームに贈られる賞品です。<br>
+      各賞ともに1チーム1回のみ受賞できます。<br>
+      受賞したチームは代表者1名のみが賞品を受け取ることができます。<br>
+      VRCキャストリンク賞は、<br>
+      「予選・決勝戦問わず3ラウンドすべてを違うENDで終える」<br>
+      という条件を満たしたチームに贈られます。
+    </p>
+    <p class="section-note">
+      EVENesT賞は、<br>
+      「予選・決勝戦問わず3ラウンド計算時、ライフが7（MAX）で終える」<br>
+      という条件を満たしたチームに贈られます。
+    </p>
+    <div class="special-grid" id="special-grid"></div>
   </div>
 
-  <!-- 参加賞 -->
-  <div class="tier" style="margin-bottom:0;">
-    <p class="section-eyebrow">For Everyone</p>
-    <h2 class="section-title">参加賞</h2>
+  <!-- 予選上位3チーム賞 -->
+  <div class="tier">
+    <p class="section-eyebrow">luxury prize</p>
+    <h2 class="section-title">豪華賞品</h2>
     <div class="section-rule"></div>
-    <div class="participation-box">
-      <span class="participation-icon">🔦</span>
-      <p class="participation-text">
-        <strong>大会に参加された全員</strong>に、記念品をお贈りします。<br>
-        暗闇を最後まで歩き切った証を、ぜひ手にとってください。
-      </p>
-    </div>
+    <p class="section-note">予選で上位3チームに入った方やキャンペーン当選者は、以下の賞品の中からランダムで1つが贈られます。</p>
+    <div class="special-grid" id="pool-grid"></div>
   </div>
 
 </main>
 
+<script>
+(function(){
+  function parseCSV(text){
+    text = text.replace(/^\uFEFF/, '').trim();
+    const lines = text.split(/\r\n|\n/).filter(l => l.trim().length > 0);
+    const header = lines[0].split(',').map(h => h.trim().toLowerCase());
+    return lines.slice(1).map(line => {
+      const cells = [];
+      let cur = '', inQuotes = false;
+      for (const ch of line){
+        if (ch === '"'){ inQuotes = !inQuotes; continue; }
+        if (ch === ',' && !inQuotes){ cells.push(cur); cur=''; continue; }
+        cur += ch;
+      }
+      cells.push(cur);
+      const row = {};
+      header.forEach((h,i) => row[h] = (cells[i] || '').trim());
+      return row;
+    });
+  }
+
+  function escapeHtml(str){
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  }
+
+  function providerHtml(r){
+    if(!r.provider) return '';
+    const inner = r.provider_url
+      ? `<a href="${escapeHtml(r.provider_url)}" target="_blank" rel="noopener">${escapeHtml(r.provider)}</a>`
+      : escapeHtml(r.provider);
+    return `<p class="prize-provider">提供：${inner}</p>`;
+  }
+
+  function photoHtml(r, label){
+    return r.image
+      ? `<div class="prize-photo"><img src="${escapeHtml(r.image)}" alt="${escapeHtml(r.prize_name)}" onerror="this.parentElement.textContent='PHOTO'"></div>`
+      : `<div class="prize-photo">PHOTO</div>`;
+  }
+
+  const RANK_MEDAL = {'1st':'🥇','2nd':'🥈','3rd':'🥉'};
+  const RANK_CLASS = {'1st':'gold','2nd':'silver','3rd':'bronze'};
+  const RANK_LABEL = {'1st':'1st Place','2nd':'2nd Place','3rd':'3rd Place'};
+
+  fetch('prizes.csv')
+    .then(res => {
+      if(!res.ok) throw new Error('prizes.csv が見つかりません');
+      return res.text();
+    })
+    .then(text => {
+      const rows = parseCSV(text).filter(r => r.prize_name);
+      const rankRows = rows.filter(r => r.tier === 'ranking');
+      const specialRows = rows.filter(r => r.tier === 'special');
+      const poolRows = rows.filter(r => r.tier === 'pool');
+
+      const rankGrid = document.getElementById('rank-grid');
+      rankGrid.innerHTML = rankRows.map(r => `
+        <div class="rank-card ${RANK_CLASS[r.rank] || ''}">
+          <p class="rank-medal">${RANK_MEDAL[r.rank] || '🏅'}</p>
+          <p class="rank-label">${RANK_LABEL[r.rank] || escapeHtml(r.rank)}</p>
+          ${photoHtml(r)}
+          <p class="rank-prize">${escapeHtml(r.prize_name)}</p>
+          ${providerHtml(r)}
+        </div>
+      `).join('');
+
+      const specialGrid = document.getElementById('special-grid');
+      specialGrid.innerHTML = specialRows.map(r => `
+        <div class="special-card">
+          <p class="special-award-name">${escapeHtml(r.award_name)}</p>
+          ${photoHtml(r)}
+          <p class="special-prize">${escapeHtml(r.prize_name)}</p>
+          ${providerHtml(r)}
+        </div>
+      `).join('');
+
+      const poolGrid = document.getElementById('pool-grid');
+      poolGrid.innerHTML = poolRows.map((r, i) => `
+        <div class="special-card">
+          <span class="pool-badge">${escapeHtml(r.rank || ('No.' + (i + 1)))}</span>
+          ${photoHtml(r)}
+          <p class="special-prize">${escapeHtml(r.prize_name)}</p>
+          ${providerHtml(r)}
+        </div>
+      `).join('');
+    })
+    .catch(err => {
+      document.getElementById('rank-grid').innerHTML =
+        `<p style="font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;color:var(--muted);">読み込みに失敗しました：${err.message}</p>`;
+    });
+})();
+</script>
+
 <footer>
-  &copy; 二〇二六　Spice Of Tournament　All Rights Reserved
-  <div class="footer-curse">─ 灯りを失った者の記録は、ここには残らない ─</div>
+  &copy; 2026　Spice Of Tournament　All Rights Reserved
+  <div class="footer-curse">─ 豪華賞品を手に入れられるか ─</div>
 </footer>
 </div>
 </body>
