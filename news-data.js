@@ -9,21 +9,21 @@
 
 const newsData = [
   {
+    title: "アンバサダー配信あります！",
+    date: "2026.7.20",
+    desc: "",
+    tweetUrl: "https://x.com/SpiceOfVRinks/status/2078967943669715394?s=20"
+  },
+  {
+    title: "いななほさんのASMR怪談動画",
+    date: "2026.7.20",
+    desc: "",
+    tweetUrl: "https://x.com/NoControl1999/status/2078858002669711411?s=20"
+  },
+  {
     title: "エントリー受付を開始しました",
     date: "2026.7.10",
     desc: "Spice Of Tournament 参加登録の受付を開始しました。",
     tweetUrl: "https://x.com/spiceofvrinks/status/2072435797371027600"
-  },
-  {
-    title: "お知らせタイトル②",
-    date: "2026.—.—",
-    desc: "ここに説明文を入れてください。",
-    tweetUrl: ""
-  },
-  {
-    title: "お知らせタイトル③",
-    date: "2026.—.—",
-    desc: "ここに説明文を入れてください。",
-    tweetUrl: ""
   }
 ];
