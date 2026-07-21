@@ -47,19 +47,20 @@ main{max-width:900px;margin:0 auto;padding:4rem 2rem 6rem;}
 .sale-banner-text{font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--muted);line-height:1.8;}
 .sale-banner-text strong{color:var(--text);}
 
-.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;}
-.product-card{background:var(--paper);border:1px solid var(--border);padding:1.8rem;position:relative;animation:fadeUp 0.5s ease both;transition:border-color 0.2s,transform 0.2s;display:flex;flex-direction:column;}
-.product-card:hover{border-color:var(--lamp);transform:translateY(-3px);}
-.product-image-placeholder{width:100%;height:140px;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;letter-spacing:0.1em;margin-bottom:1.2rem;overflow:hidden;}
-.product-image-placeholder img{width:100%;height:100%;object-fit:cover;display:block;}
-.product-badge{display:inline-block;padding:0.2rem 0.7rem;background:var(--lamp-dim);color:#fff;font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.8rem;align-self:flex-start;}
-.product-name{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;letter-spacing:0.03em;}
-.product-desc{font-size:0.78rem;color:var(--muted);line-height:1.8;font-family:'Noto Sans JP',sans-serif;margin-bottom:1.2rem;flex-grow:1;}
-.product-price{display:flex;align-items:baseline;gap:0.6rem;margin-bottom:1.2rem;}
-.product-price-now{font-size:1.3rem;font-weight:700;color:var(--lamp-bright);}
-.product-price-old{font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--muted);text-decoration:line-through;}
-.product-link{display:block;text-align:center;padding:0.7rem;border:1px solid var(--lamp);color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-decoration:none;transition:background 0.2s,color 0.2s;}
-.product-link:hover{background:var(--lamp);color:#100a00;}
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;}
+.shop-card{background:var(--paper);border:1px solid var(--border);position:relative;animation:fadeUp 0.5s ease both;transition:border-color 0.2s,transform 0.2s;display:flex;flex-direction:column;overflow:hidden;}
+.shop-card:hover{border-color:var(--lamp);transform:translateY(-3px);}
+.shop-image{width:100%;height:160px;background:rgba(204,34,34,0.06);border-bottom:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;letter-spacing:0.1em;overflow:hidden;flex-shrink:0;}
+.shop-image img{width:100%;height:100%;object-fit:cover;display:block;}
+.shop-body{padding:1.6rem 1.8rem;display:flex;flex-direction:column;flex-grow:1;}
+.shop-name{font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:0.8rem;letter-spacing:0.03em;}
+.shop-discount{display:inline-block;padding:0.5rem 1rem;background:var(--lamp);color:#fff;font-family:'Noto Serif JP',serif;font-size:1.05rem;font-weight:700;letter-spacing:0.05em;margin-bottom:1.2rem;align-self:flex-start;text-shadow:0 1px 2px rgba(0,0,0,0.3);}
+.shop-products-label{font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;color:var(--lamp);letter-spacing:0.15em;margin-bottom:0.6rem;}
+.shop-products{list-style:none;margin-bottom:1.4rem;flex-grow:1;}
+.shop-products li{font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:var(--muted);line-height:1.9;padding-left:1.1rem;position:relative;}
+.shop-products li::before{content:'─';position:absolute;left:0;color:var(--lamp-dim);}
+.shop-link{display:block;text-align:center;padding:0.8rem;border:1px solid var(--lamp);color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-decoration:none;transition:background 0.2s,color 0.2s;}
+.shop-link:hover{background:var(--lamp);color:#100a00;}
 
 footer{border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;font-family:'Noto Sans JP',sans-serif;}
 .footer-curse{margin-top:1.2rem;color:#3a2a10;font-size:0.6rem;letter-spacing:0.08em;}
@@ -112,15 +113,15 @@ for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m
 <main>
   <div class="sale-banner">
     <span class="sale-banner-badge">🔦 SALE</span>
-    <p class="sale-banner-text"><strong>開催期間中限定</strong>で、対象商品をお得な価格でご購入いただけます。<br>各商品の詳細・購入は「商品ページへ」からご確認ください。</p>
+    <p class="sale-banner-text"><strong>開催期間中限定</strong>で、対象ショップの商品をお得な価格でご購入いただけます。<br>各ショップの詳細・購入は「ショップへ」からご確認ください。</p>
   </div>
 
-  <p class="section-eyebrow">Products</p>
-  <h2 class="section-title">対象商品</h2>
+  <p class="section-eyebrow">Shops</p>
+  <h2 class="section-title">対象ショップ</h2>
   <div class="section-rule"></div>
-  <p class="section-note">※ sale.csv の内容を読み込んで自動表示しています。編集はCSVファイルのみでOKです。</p>
+  <p class="section-note">※ スプレッドシートの内容を読み込んで自動表示しています。編集はスプレッドシートでOKです。</p>
 
-  <div class="product-grid" id="product-grid">
+  <div class="shop-grid" id="shop-grid">
     <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;color:var(--muted);">読み込み中…</p>
   </div>
 </main>
@@ -128,21 +129,31 @@ for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m
 <script>
 (function(){
   function parseCSV(text){
-    text = text.replace(/^\uFEFF/, '').trim();
-    const lines = text.split(/\r\n|\n/).filter(l => l.trim().length > 0);
-    const header = lines[0].split(',').map(h => h.trim().toLowerCase());
-    return lines.slice(1).map(line => {
-      const cells = [];
-      let cur = '', inQuotes = false;
-      for (const ch of line){
-        if (ch === '"'){ inQuotes = !inQuotes; continue; }
-        if (ch === ',' && !inQuotes){ cells.push(cur); cur=''; continue; }
+    text = text.replace(/^\uFEFF/, '');
+    const rows = [];
+    let row = [], cur = '', inQuotes = false;
+    for (let i = 0; i < text.length; i++){
+      const ch = text[i], next = text[i+1];
+      if (inQuotes){
+        if (ch === '"' && next === '"'){ cur += '"'; i++; continue; }
+        if (ch === '"'){ inQuotes = false; continue; }
+        cur += ch;
+      } else {
+        if (ch === '"'){ inQuotes = true; continue; }
+        if (ch === ','){ row.push(cur); cur = ''; continue; }
+        if (ch === '\r'){ continue; }
+        if (ch === '\n'){ row.push(cur); rows.push(row); row = []; cur = ''; continue; }
         cur += ch;
       }
-      cells.push(cur);
-      const row = {};
-      header.forEach((h,i) => row[h] = (cells[i] || '').trim());
-      return row;
+    }
+    if (cur.length > 0 || row.length > 0){ row.push(cur); rows.push(row); }
+    const filtered = rows.filter(r => r.some(c => c.trim().length > 0));
+    if (filtered.length === 0) return [];
+    const header = filtered[0].map(h => h.trim().toLowerCase());
+    return filtered.slice(1).map(cells => {
+      const obj = {};
+      header.forEach((h,i) => obj[h] = (cells[i] || '').trim());
+      return obj;
     });
   }
 
@@ -158,29 +169,41 @@ for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m
       return res.text();
     })
     .then(text => {
-      const rows = parseCSV(text).filter(r => r.name);
-      const grid = document.getElementById('product-grid');
+      const rows = parseCSV(text).filter(r => r.shop);
+      const grid = document.getElementById('shop-grid');
 
       grid.innerHTML = rows.map(r => {
         const image = r.image
-          ? `<div class="product-image-placeholder"><img src="${escapeHtml(r.image)}" alt="${escapeHtml(r.name)}" onerror="this.parentElement.textContent='IMAGE'"></div>`
-          : `<div class="product-image-placeholder">IMAGE</div>`;
-        const priceOld = r.price_old
-          ? `<span class="product-price-old">¥${escapeHtml(r.price_old)}</span>`
+          ? `<div class="shop-image"><img src="${escapeHtml(r.image)}" alt="${escapeHtml(r.shop)}" onerror="this.parentElement.textContent='IMAGE'"></div>`
+          : `<div class="shop-image">IMAGE</div>`;
+
+        const productList = (r.products || '')
+          .split(/\r\n|\n|;|、/)
+          .map(p => p.trim())
+          .filter(Boolean)
+          .slice(0, 10);
+        const products = productList.length
+          ? `<p class="shop-products-label">対象商品</p><ul class="shop-products">${productList.map(p => `<li>${escapeHtml(p)}</li>`).join('')}</ul>`
           : '';
+
+        const discount = r.discount
+          ? `<span class="shop-discount">${escapeHtml(r.discount)}</span>`
+          : '';
+
         return `
-        <div class="product-card">
+        <div class="shop-card">
           ${image}
-          <span class="product-badge">SALE</span>
-          <p class="product-name">${escapeHtml(r.name)}</p>
-          <p class="product-desc">${escapeHtml(r.desc)}</p>
-          <div class="product-price"><span class="product-price-now">¥${escapeHtml(r.price_now)}</span>${priceOld}</div>
-          <a href="${escapeHtml(r.url || '#')}" target="_blank" rel="noopener" class="product-link">商品ページへ →</a>
+          <div class="shop-body">
+            <p class="shop-name">${escapeHtml(r.shop)}</p>
+            ${discount}
+            ${products}
+            <a href="${escapeHtml(r.url || '#')}" target="_blank" rel="noopener" class="shop-link">ショップへ →</a>
+          </div>
         </div>`;
       }).join('');
     })
     .catch(err => {
-      document.getElementById('product-grid').innerHTML =
+      document.getElementById('shop-grid').innerHTML =
         `<p style="font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;color:var(--muted);">読み込みに失敗しました：${err.message}</p>`;
     });
 })();
