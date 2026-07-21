@@ -9,6 +9,13 @@
 
 const newsData = [
   {
+    title: "協力応援団体発表",
+    date: "2026.7.21",
+    desc: "",
+    tweetUrl: "https://x.com/SpiceOfVRinks/status/2079325479987716465?s=20"
+  },
+
+  {
     title: "アンバサダー配信あります！",
     date: "2026.7.20",
     desc: "",
