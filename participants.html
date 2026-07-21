@@ -151,7 +151,7 @@ for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m
     return div.innerHTML;
   }
 
-  fetch('groups.csv')
+  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQvKIfYVdKDTW0jFGKm8C10BjcTZqUqdO8KWE2LI92FuTyJb-7V0veQ27vx3pzUbqLIDob21JNObjoy/pub?gid=0&single=true&output=csv&t=' + Date.now())
     .then(res => {
       if(!res.ok) throw new Error('groups.csv が見つかりません');
       return res.text();

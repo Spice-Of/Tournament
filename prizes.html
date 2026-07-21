@@ -218,7 +218,7 @@ for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m
   const RANK_CLASS = {'1st':'gold','2nd':'silver','3rd':'bronze'};
   const RANK_LABEL = {'1st':'1st Place','2nd':'2nd Place','3rd':'3rd Place'};
 
-  fetch('prizes.csv')
+  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQvKIfYVdKDTW0jFGKm8C10BjcTZqUqdO8KWE2LI92FuTyJb-7V0veQ27vx3pzUbqLIDob21JNObjoy/pub?gid=1777922864&single=true&output=csv&t=' + Date.now())
     .then(res => {
       if(!res.ok) throw new Error('prizes.csv が見つかりません');
       return res.text();

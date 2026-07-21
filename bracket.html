@@ -247,8 +247,8 @@ document.getElementById('pcToggle').addEventListener('click', () => {
 </script>
 
 <script>
-const GROUPS_CSV = 'groups.csv';
-const FINAL_CSV = 'final.csv';
+const GROUPS_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQvKIfYVdKDTW0jFGKm8C10BjcTZqUqdO8KWE2LI92FuTyJb-7V0veQ27vx3pzUbqLIDob21JNObjoy/pub?gid=0&single=true&output=csv';
+const FINAL_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQvKIfYVdKDTW0jFGKm8C10BjcTZqUqdO8KWE2LI92FuTyJb-7V0veQ27vx3pzUbqLIDob21JNObjoy/pub?gid=1143629325&single=true&output=csv';
 const GROUP_LETTERS = ['A','B','C','D'];
 
 function parseCSV(text){
@@ -473,8 +473,8 @@ async function load(){
 
   try{
     const [groupsRes, finalRes] = await Promise.all([
-      fetch(GROUPS_CSV + '?t=' + Date.now()),
-      fetch(FINAL_CSV + '?t=' + Date.now())
+      fetch(GROUPS_CSV + '&t=' + Date.now()),
+      fetch(FINAL_CSV + '&t=' + Date.now())
     ]);
     if (!groupsRes.ok) throw new Error('groups.csv が見つかりません');
     const groupsText = await groupsRes.text();

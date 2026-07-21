@@ -50,7 +50,8 @@ main{max-width:900px;margin:0 auto;padding:4rem 2rem 6rem;}
 .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;}
 .product-card{background:var(--paper);border:1px solid var(--border);padding:1.8rem;position:relative;animation:fadeUp 0.5s ease both;transition:border-color 0.2s,transform 0.2s;display:flex;flex-direction:column;}
 .product-card:hover{border-color:var(--lamp);transform:translateY(-3px);}
-.product-image-placeholder{width:100%;height:140px;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;letter-spacing:0.1em;margin-bottom:1.2rem;}
+.product-image-placeholder{width:100%;height:140px;background:rgba(204,34,34,0.06);border:1px dashed rgba(204,34,34,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;letter-spacing:0.1em;margin-bottom:1.2rem;overflow:hidden;}
+.product-image-placeholder img{width:100%;height:100%;object-fit:cover;display:block;}
 .product-badge{display:inline-block;padding:0.2rem 0.7rem;background:var(--lamp-dim);color:#fff;font-family:'Noto Sans JP',sans-serif;font-size:0.6rem;letter-spacing:0.1em;margin-bottom:0.8rem;align-self:flex-start;}
 .product-name{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;letter-spacing:0.03em;}
 .product-desc{font-size:0.78rem;color:var(--muted);line-height:1.8;font-family:'Noto Sans JP',sans-serif;margin-bottom:1.2rem;flex-grow:1;}
@@ -117,35 +118,73 @@ for(let i=0;i<10;i++){const m=document.createElement('div');m.className='mote';m
   <p class="section-eyebrow">Products</p>
   <h2 class="section-title">対象商品</h2>
   <div class="section-rule"></div>
-  <p class="section-note">※ 商品名・価格・URLは仮の情報です。実際の情報に書き換えてご使用ください。</p>
+  <p class="section-note">※ sale.csv の内容を読み込んで自動表示しています。編集はCSVファイルのみでOKです。</p>
 
-  <div class="product-grid">
-    <div class="product-card">
-      <div class="product-image-placeholder">IMAGE</div>
-      <span class="product-badge">SALE</span>
-      <p class="product-name">商品名①</p>
-      <p class="product-desc">ここに商品の紹介文を入れてください。</p>
-      <div class="product-price"><span class="product-price-now">¥0,000</span><span class="product-price-old">¥0,000</span></div>
-      <a href="#" class="product-link">商品ページへ →</a>
-    </div>
-    <div class="product-card">
-      <div class="product-image-placeholder">IMAGE</div>
-      <span class="product-badge">SALE</span>
-      <p class="product-name">商品名②</p>
-      <p class="product-desc">ここに商品の紹介文を入れてください。</p>
-      <div class="product-price"><span class="product-price-now">¥0,000</span><span class="product-price-old">¥0,000</span></div>
-      <a href="#" class="product-link">商品ページへ →</a>
-    </div>
-    <div class="product-card">
-      <div class="product-image-placeholder">IMAGE</div>
-      <span class="product-badge">SALE</span>
-      <p class="product-name">商品名③</p>
-      <p class="product-desc">ここに商品の紹介文を入れてください。</p>
-      <div class="product-price"><span class="product-price-now">¥0,000</span><span class="product-price-old">¥0,000</span></div>
-      <a href="#" class="product-link">商品ページへ →</a>
-    </div>
+  <div class="product-grid" id="product-grid">
+    <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;color:var(--muted);">読み込み中…</p>
   </div>
 </main>
+
+<script>
+(function(){
+  function parseCSV(text){
+    text = text.replace(/^\uFEFF/, '').trim();
+    const lines = text.split(/\r\n|\n/).filter(l => l.trim().length > 0);
+    const header = lines[0].split(',').map(h => h.trim().toLowerCase());
+    return lines.slice(1).map(line => {
+      const cells = [];
+      let cur = '', inQuotes = false;
+      for (const ch of line){
+        if (ch === '"'){ inQuotes = !inQuotes; continue; }
+        if (ch === ',' && !inQuotes){ cells.push(cur); cur=''; continue; }
+        cur += ch;
+      }
+      cells.push(cur);
+      const row = {};
+      header.forEach((h,i) => row[h] = (cells[i] || '').trim());
+      return row;
+    });
+  }
+
+  function escapeHtml(str){
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  }
+
+  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQvKIfYVdKDTW0jFGKm8C10BjcTZqUqdO8KWE2LI92FuTyJb-7V0veQ27vx3pzUbqLIDob21JNObjoy/pub?gid=1198239961&single=true&output=csv&t=' + Date.now())
+    .then(res => {
+      if(!res.ok) throw new Error('sale.csv が見つかりません');
+      return res.text();
+    })
+    .then(text => {
+      const rows = parseCSV(text).filter(r => r.name);
+      const grid = document.getElementById('product-grid');
+
+      grid.innerHTML = rows.map(r => {
+        const image = r.image
+          ? `<div class="product-image-placeholder"><img src="${escapeHtml(r.image)}" alt="${escapeHtml(r.name)}" onerror="this.parentElement.textContent='IMAGE'"></div>`
+          : `<div class="product-image-placeholder">IMAGE</div>`;
+        const priceOld = r.price_old
+          ? `<span class="product-price-old">¥${escapeHtml(r.price_old)}</span>`
+          : '';
+        return `
+        <div class="product-card">
+          ${image}
+          <span class="product-badge">SALE</span>
+          <p class="product-name">${escapeHtml(r.name)}</p>
+          <p class="product-desc">${escapeHtml(r.desc)}</p>
+          <div class="product-price"><span class="product-price-now">¥${escapeHtml(r.price_now)}</span>${priceOld}</div>
+          <a href="${escapeHtml(r.url || '#')}" target="_blank" rel="noopener" class="product-link">商品ページへ →</a>
+        </div>`;
+      }).join('');
+    })
+    .catch(err => {
+      document.getElementById('product-grid').innerHTML =
+        `<p style="font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;color:var(--muted);">読み込みに失敗しました：${err.message}</p>`;
+    });
+})();
+</script>
 
 <footer>
   &copy; 二〇二六　Spice Of Tournament　All Rights Reserved
