@@ -21,6 +21,14 @@
 }
 html{scroll-behavior:smooth;}
 
+<script>
+  window.onerror = function(msg) {
+    document.body.insertAdjacentHTML('afterbegin', 
+      '<div style="background:red;color:white;padding:10px;position:fixed;top:0;left:0;right:0;z-index:9999;">' + msg + '</div>');
+  };
+</script>
+
+
 @keyframes flicker{
   0%,93%,100%{opacity:1;}
   94%{opacity:0.55;filter:brightness(1.5);}
