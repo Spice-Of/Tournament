@@ -647,17 +647,27 @@ for(let i=0;i<14;i++){
 
   <a class="twitter-timeline" 
    data-theme="dark" 
+   id="spice-timeline"
    href="https://x.com/SpiceOfVRinks?ref_src=twsrc%5Etfw">
    Posts by @SpiceOfVRinks
 </a>
-<script async 
-   src="https://platform.twitter.com/widgets.js" 
-   charset="utf-8"
-   onload="alert('widgets.js 読み込み成功')"
-   onerror="alert('widgets.js 読み込み失敗')"></script>
+<script>
+  window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    t._e = [];
+    t.ready = function(f) { t._e.push(f); };
+    return t;
+  }(document, "script", "twitter-wjs"));
 
-  </div>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  twttr.ready(function(twttr) {
+    twttr.widgets.load();
+  });
+</script>
+
 
 <!-- RELATED NEWS -->
 <section id="news" style="border-top:1px solid var(--border);">
