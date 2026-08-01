@@ -284,10 +284,20 @@ function escapeHtml(str){
 
 function pt(v){ return v === null ? '<span class="pending">-</span>' : v; }
 
+/* サドンデス対応の比較関数
+   スコア(scoreVal)が同点の場合、sad列が"1"のチームを上位にする */
+function compareWithSad(a, b, scoreVal){
+  const sa = scoreVal(a), sb = scoreVal(b);
+  if (sa !== sb) return (sb ?? -Infinity) - (sa ?? -Infinity);
+  const sadA = toNum(a.sad) === 1 ? 1 : 0;
+  const sadB = toNum(b.sad) === 1 ? 1 : 0;
+  return sadB - sadA;
+}
+
 /* ---- render a small match table (rank / number / name / score) ---- */
 function matchTable(teams, scoreKey, groupLetter){
   const withScore = teams.map(t => ({...t, _s: toNum(t[scoreKey])}));
-  withScore.sort((a,b) => (b._s ?? -Infinity) - (a._s ?? -Infinity));
+  withScore.sort((a,b) => compareWithSad(a, b, t => t._s));
   const rows = withScore.map((t,i) => `
     <tr>
       <td class="num">${i+1}</td>
@@ -303,8 +313,7 @@ function computeGroup(teams){
   const q1 = sorted.slice(0,4);
   const q2 = sorted.slice(4,8);
 
-  const rank = (arr, key) => [...arr].sort((a,b) =>
-    (toNum(b[key]) ?? -Infinity) - (toNum(a[key]) ?? -Infinity));
+  const rank = (arr, key) => [...arr].sort((a,b) => compareWithSad(a, b, t => toNum(t[key])));
 
   const q1Ranked = rank(q1, 'match1_score');
   const q2Ranked = rank(q2, 'match1_score');
@@ -333,7 +342,7 @@ function computeGroup(teams){
     const m2 = toNum(t.match2_score);
     return { ...t, _m1: m1, _m2: m2, _total: (m1 !== null && m2 !== null) ? m1 + m2 : null };
   });
-  withTotal.sort((a,b) => (b._total ?? -Infinity) - (a._total ?? -Infinity));
+  withTotal.sort((a,b) => compareWithSad(a, b, t => t._total));
 
   return { q1: q1Ranked, q2: q2Ranked, upperSlots, lowerSlots, overall: withTotal };
 }
@@ -343,7 +352,7 @@ function computeGroup(teams){
 function slotTable(slots, scoreKey, groupLetter){
   const allKnown = slots.every(s => s.complete);
   const ordered = allKnown
-    ? [...slots].sort((a,b) => (toNum(b.team[scoreKey]) ?? -Infinity) - (toNum(a.team[scoreKey]) ?? -Infinity))
+    ? [...slots].sort((a,b) => compareWithSad(a.team, b.team, t => toNum(t[scoreKey])))
     : slots;
 
   const rows = ordered.map((s,i) => {
@@ -438,7 +447,7 @@ function renderFinal(teams){
   }
 
   const withScore = teams.map(t => ({ ...t, _s: toNum(t.score) }));
-  withScore.sort((a,b) => (b._s ?? -Infinity) - (a._s ?? -Infinity));
+  withScore.sort((a,b) => compareWithSad(a, b, t => t._s));
 
   const hasAllScores = withScore.every(t => t._s !== null);
 
